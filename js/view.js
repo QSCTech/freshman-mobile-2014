@@ -119,10 +119,10 @@ $(document).ready(function() {
         
     }, 'text');
     // Device Orientation Test
-    $(document.body).bind('deviceorientation', function(event) {
+    window.addEventListener('deviceorientation', function(event) {
         $('#event-alpha').text(event.alpha);
         $('#event-beta').text(event.beta);
         $('#event-gamma').text(event.gamma);
-    });
+    }, true);
 });
 
