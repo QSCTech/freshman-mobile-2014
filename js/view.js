@@ -119,6 +119,8 @@ $(document).ready(function() {
         
     }, 'text');
     // Device Orientation Test
+    // 测试表明，gamma为左右翻转手机，beta为上下翻转。
+    $('#orientation-test').css('display', 'none');
     window.addEventListener('deviceorientation', function(event) {
         $('#event-alpha').text(event.alpha);
         $('#event-beta').text(event.beta);
