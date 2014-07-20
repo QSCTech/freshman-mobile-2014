@@ -22,7 +22,7 @@ var Doc = function(md) {
     window.mdhtml = html;
     this.$content = $('#content').html($html);
     var index = $html.clone().filter('h1, h2');
-    $('#cover-btn').text(index);
+    $('#cover-btn').html(index);
     this.pages = {
         cover: $('#cover'),
         content: $('#content'),
