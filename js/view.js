@@ -14,7 +14,7 @@ var Doc = function(md) {
     html = html.replace(/<p>[ ]+/, '<p>'); // 去除 <p> 标签开头的空白
     html = html.replace(/<p>(<img alt="cover".*>)<\/p>/g, '$1'); 
     // 对图片的预处理，不一次全部加载完毕，希望用户不是用流量。
-    html = html.replace(/(<img.*?) src=/g, '$1 data-src=');
+    //html = html.replace(/(<img.*?) src=/g, '$1 data-src=');
     var $html = $(html);
     $html.find('img[alt=cover]').addClass('img-cover');
     window.$html = $html;
