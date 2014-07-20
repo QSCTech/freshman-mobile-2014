@@ -117,6 +117,7 @@ Doc.prototype.initFunc = function() {
     };
     this.switchSubsection = function(title) {
         
+    };
 };
 
 $(document).ready(function() {
