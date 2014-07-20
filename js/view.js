@@ -108,6 +108,7 @@ Doc.prototype.initFunc = function() {
         var topOffset = 100;
         $(document.body).scrollTop(-topOffset + that.pages[page].offset().top);
     };
+    this.switchSection = function(page, 
 };
 
 $(document).ready(function() {
@@ -115,5 +116,11 @@ $(document).ready(function() {
         doc = new Doc(data);
         
     }, 'text');
+    // Device Orientation Test
+    $(document.body).bind('deviceorientation', function(event) {
+        $('#event-alpha').text(event.alpha);
+        $('#event-beta').text(event.beta);
+        $('#event-gamma').text(event.gamma);
+    });
 });
 
