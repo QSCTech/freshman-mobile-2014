@@ -23,7 +23,11 @@ var Doc = function(md) {
     this.$content = $('#content').html($html);
     var index = $html.clone().filter('h1, h2');
     $('#cover-btn').html(index);
-
+    this.pages = {
+        cover: $('#cover'),
+        content: $('#content'),
+        downloads: $('#downloads')
+    };
     this.initFunc();
     this.parseSections();
     // tap or click
@@ -32,6 +36,7 @@ var Doc = function(md) {
 };
 Doc.prototype.initFunc = function() {
     var that = this;
+
     this.parseSections = function() {
         var titleObject = $('h1, h2'), 
             lastChapter = '';
@@ -48,10 +53,12 @@ Doc.prototype.initFunc = function() {
     this.bindLinkKeys = function() {
         var h1callback = function() {
             var url = '#!/' + $(this).html();
+            that.updateUrl(url);
             that.applyUrl(url);
         };
         var h2callback = function() {
             var url = '#!/' + $(this).attr('data-chapter') + '/' + $(this).text();
+            that.updateUrl(url);
             that.applyUrl(url);
         };
         var eventFunc = 'click';
@@ -60,6 +67,38 @@ Doc.prototype.initFunc = function() {
         }
         $('h1')[eventFunc](h1callback);
         $('h2')[eventFunc](h2callback);
+    };
+    this.updateUrl = function(url) {
+        url = location.href.split('#!/')[0] + url;
+        window.history.pushState('浙江大学新生手册', '浙江大学新生手册', url);
+    };
+    this.applyUrl = function(url) {
+        if (!url) {
+            url = decodeURIComponent(window.location.href);
+        }
+        var path = url.split('#!/');
+        path = path.pop().split('/');
+        that.applyPath(path);
+    };
+    this.applyPath = function(path) {
+        // 一共可能有三层path，分为chapter / section / subsection
+        if (console && console.log) {
+            console.log(path);
+        }
+        if (path[0]) {
+            if (path[0] == '下载') {
+                that.switchPage('downloads');
+            } else {
+                that.switchPage('content');
+                that.switchChapter(path[0]);
+                if (path[1]) {
+                    that.switchSection(path[1]);
+                }
+                if (path[2]) {
+                    that.switchSubsection(path[3]);
+                }
+            }
+        }
     };
 };
 
