@@ -26,7 +26,8 @@ var Doc = function(md) {
     this.pages = {
         cover: $('#cover'),
         content: $('#content'),
-        downloads: $('#downloads')
+        downloads: $('#downloads'),
+        search: $('#serach');
     };
     this.initFunc();
     this.parseSections();
@@ -88,6 +89,8 @@ Doc.prototype.initFunc = function() {
         if (path[0]) {
             if (path[0] == '下载') {
                 that.switchPage('downloads');
+            } else if (path[0] == '搜索') {
+                that.switchPage('search');
             } else {
                 that.switchPage('content');
                 that.switchChapter(path[0]);
