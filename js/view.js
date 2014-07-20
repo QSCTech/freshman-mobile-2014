@@ -112,13 +112,13 @@ Doc.prototype.initFunc = function() {
     this.switchPage = function(page, gesture) {
         // gesture 用于判断是否为用户滑动。如果是，那么将采用其他动画。
         that.currentPage = page;
-        $(document.body).scrollTop(-this.topOffset + that.pages[page].offset().top);
+        $(document.body).scrollTop(-that.topOffset + that.pages[page].offset().top);
     };
     this.switchChapter = function(title, gesture) {
-        $(document.body).scrollTop(-this.topOffset + that.pages[that.currentPage].find('h1.title-' + title).offset().top);
+        $(document.body).scrollTop(-that.topOffset + that.pages[that.currentPage].find('h1.title-' + title).offset().top);
     };
     this.switchSection = function(title) {
-        $(document.body).scrollTop(-this.topOffset + that.pages[that.currentPage].find('h2.title-' + title).offset().top);
+        $(document.body).scrollTop(-that.topOffset + that.pages[that.currentPage].find('h2.title-' + title).offset().top);
     };
     this.switchSubsection = function(title) {
         
