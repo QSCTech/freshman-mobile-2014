@@ -11,6 +11,7 @@
 <link rel="stylesheet/less" type="text/css" href="css/styles.less">
 <script type="text/javascript">
 window.supportsTouch = (('ontouchstart' in window) || window.DocumentTouch && document instanceof window.DocumentTouch);
+window.supportsTouch = !!window.supportsTouch;
 </script>
 <script src="js/less-1.7.3.min.js"></script>
 <script src="js/zepto.min.js"></script>
@@ -22,7 +23,7 @@ window.supportsTouch = (('ontouchstart' in window) || window.DocumentTouch && do
 
 <body>
     <div id="nav-bar"></div>
-    <div id="cover">
+    <div id="cover" class="page">
         <div id="cover-nav">
             <div id="cover-copyright">
                 &copy; 2014 浙江大学求是潮
@@ -36,7 +37,7 @@ window.supportsTouch = (('ontouchstart' in window) || window.DocumentTouch && do
             </div>
         </div>
     </div>
-    <div id="container" class="page">
+    <div id="content" class="page">
         <!-- content, auto fiiled by script -->
     </div>
     <div id="downloads" class="page">
