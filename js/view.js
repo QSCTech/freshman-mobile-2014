@@ -22,7 +22,7 @@ var Doc = function(md) {
     window.mdhtml = html;
     this.$content = $('#content').html($html);
     var index = $html.clone().filter('h1, h2');
-    $('#cover-btn').html(index);
+    $('#cover-btn').text(index);
     this.pages = {
         cover: $('#cover'),
         content: $('#content'),
@@ -44,7 +44,7 @@ Doc.prototype.initFunc = function() {
         for (var i = 0; i < titleObject.length; i++) {
             if ($(titleObject[i]).attr('tagName').toLowerCase() == 'h1') {
                 // 大章节标题
-                lastChapter = $(titleObject[i]).html();
+                lastChapter = $(titleObject[i]).text();
             } else {
                 // 必为小节
                 $(titleObject[i]).attr('data-chapter', lastChapter);
@@ -53,7 +53,7 @@ Doc.prototype.initFunc = function() {
     };
     this.bindLinkKeys = function() {
         var h1callback = function() {
-            var url = '#!/' + $(this).html();
+            var url = '#!/' + $(this).text();
             that.updateUrl(url);
             that.applyUrl(url);
         };
