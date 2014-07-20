@@ -112,8 +112,11 @@ Doc.prototype.initFunc = function() {
         // gesture 用于判断是否为用户滑动。如果是，那么将采用其他动画。
         $(document.body).scrollTop(-this.topOffset + that.pages[page].offset().top);
     };
-    this.switchSection = function(title, gesture) {
+    this.switchChapter = function(title, gesture) {
         $(document.body).scrollTop(-this.topOffset + $('h1.title-' + title).offset().top);
+    };
+    this.switchSection = function(title) {
+        $(document.body).scrollTop(-this.topOffset + $('h2.title-' + title).offset().top);
     };
     this.switchSubsection = function(title) {
         
