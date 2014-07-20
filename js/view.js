@@ -27,7 +27,7 @@ var Doc = function(md) {
         cover: $('#cover'),
         content: $('#content'),
         downloads: $('#downloads'),
-        search: $('#serach');
+        search: $('#serach')
     };
     this.initFunc();
     this.parseSections();
