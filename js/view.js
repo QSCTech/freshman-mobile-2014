@@ -113,7 +113,7 @@ Doc.prototype.initFunc = function() {
         $(document.body).scrollTop(-this.topOffset + that.pages[page].offset().top);
     };
     this.switchSection = function(title, gesture) {
-        $(document.body).scrollTop(-this.topOffset + $('h1').offset().top);
+        $(document.body).scrollTop(-this.topOffset + $('h1.title-' + title).offset().top);
     };
     this.switchSubsection = function(title) {
         
