@@ -20,8 +20,10 @@ var Doc = function(md) {
     $html.find('img[alt=cover]').addClass('img-cover');
     window.$html = $html;
     window.mdhtml = html;
+    $html.find('h1, h2').addClass('title-in-content');
     this.$content = $('#content').html($html);
     var index = $html.clone().filter('h1, h2');
+    index.removeClass('title-in-content').addClass('title-in-index');
     $('#cover-btn').html(index);
     this.pages = {
         cover: $('#cover'),
@@ -49,6 +51,8 @@ Doc.prototype.initFunc = function() {
                 // 必为小节
                 $(titleObject[i]).attr('data-chapter', lastChapter);
             }
+            $(titleObject[i]).attr('data-title', $(titleObject[i]).text())
+                             .addClass('title-' + $(titleObject[i]).text());
         }
     };
     this.bindLinkKeys = function() {
@@ -103,14 +107,16 @@ Doc.prototype.initFunc = function() {
             }
         }
     };
+    this.topOffset = 100;
     this.switchPage = function(page, gesture) {
         // gesture 用于判断是否为用户滑动。如果是，那么将采用其他动画。
-        var topOffset = 100;
-        $(document.body).scrollTop(-topOffset + that.pages[page].offset().top);
+        $(document.body).scrollTop(-this.topOffset + that.pages[page].offset().top);
     };
-    this.switchSection = function(page, gesture) {
+    this.switchSection = function(title, gesture) {
+        $(document.body).scrollTop(-this.topOffset + $('h1').offset().top);
+    };
+    this.switchSubsection = function(title) {
         
-    };
 };
 
 $(document).ready(function() {
