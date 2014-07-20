@@ -105,7 +105,8 @@ Doc.prototype.initFunc = function() {
     };
     this.switchPage = function(page, gesture) {
         // gesture 用于判断是否为用户滑动。如果是，那么将采用其他动画。
-        $('#pages-container').animate({scrollTop: that.pages[page].offset().top});
+        var topOffset = 100;
+        $(document.body).scrollTop(topOffset + that.pages[page].offset().top);
     };
 };
 
