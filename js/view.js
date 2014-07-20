@@ -17,6 +17,7 @@ var Doc = function(md) {
     html = html.replace(/<p>(<img.*?) src=/g, '<p>$1 data-');
     var $html = $(html);
     window.$html = $html;
+    window.mdhtml = html;
 };
 
 $(document).ready(function() {
