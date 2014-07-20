@@ -108,7 +108,9 @@ Doc.prototype.initFunc = function() {
         var topOffset = 100;
         $(document.body).scrollTop(-topOffset + that.pages[page].offset().top);
     };
-    this.switchSection = function(page, 
+    this.switchSection = function(page, gesture) {
+        
+    };
 };
 
 $(document).ready(function() {
