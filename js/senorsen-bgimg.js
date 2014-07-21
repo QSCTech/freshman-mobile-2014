@@ -14,7 +14,7 @@ var Bgimg = function() {
         that.obj = $(obj);
         $(obj).css({
             'background-image': 'url(' + url + ')',
-            'background-size': 'auto ' + that.sheight * 1.3 + 'px',
+            'background-size': 'auto ' + that.sheight * 1.2 + 'px',
         });
     };
     this.checkDeviceOrientation = function(event) {
