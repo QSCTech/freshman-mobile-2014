@@ -121,7 +121,7 @@ Doc.prototype.initFunc = function() {
             }
         });
         $('#content').find('h1, h2, h3, h4').addClass('title-in-content');
-        $('#cover').find('h1, h2, h3, h4').addClass('title-in-cover');
+        $('#cover-btn').find('h1, h2, h3, h4').addClass('title-in-cover');
         for (var i = 0; i < titleObject.length; i++) {
             if ($(titleObject[i]).attr('tagName').toLowerCase() == 'h1') {
                 // 大章节标题
