@@ -13,7 +13,7 @@ var Bgimg = function() {
         that.preloader = $('<img>').attr('src', url);
         that.obj = $(obj);
         $(obj).css({
-            'background': 'url(' + url + ') no-repeat',
+            'background-image': 'url(' + url + ')',
             'background-size': 'auto ' + that.swidth * 1.3 + 'px',
         });
     };
