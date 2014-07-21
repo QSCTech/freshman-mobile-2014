@@ -41,7 +41,10 @@ window.supportsDeviceOrientation = !!window.DeviceOrientationEvent;
     </div>
     <div id="nav-drawer-gray-layer" class="close"></div>
     <div id="nav-drawer" class="drawer close">
-        <div id="nav-home" class="drawer-btn">返回首页</div>
+        <div id="nav-home" class="drawer-btn" onclick="doc.applyPath([])" ontap="doc.applyPath([])">返回首页</div>
+        <div id="nav-menu">
+            <div class="drawer-btn">测试</div>
+        </div>
         <div id="nav-downloads" class="drawer-btn">电子书下载</div>
         <div id="nav-about" class="drawer-btn">关于作者</div>
     </div>
