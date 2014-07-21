@@ -63,11 +63,12 @@ var Doc = function(md) {
             return -1;
         };
         currentTitleID = binFind(that.positionTable, that.positionTable.length, currentTop);
+        if (currentTitleID == that.currentTitleID) return; // no change
+        that.currentTitleID = currentTitleID;
         if (currentTitleID == -1 || typeof that.nameTable[currentTitleID] == 'undefined') {
             that.updateTitle('');
             return;
         }
-        if (currentTitleID == that.currentTitleID) return; // no change
         currentTitle = that.nameTable[currentTitleID];
         that.updateTitle(currentTitle);
         //that.updateUrl($('.title-' + that.nameTable[currentTitleID]).attr('data-url'));
