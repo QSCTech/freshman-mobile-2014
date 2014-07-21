@@ -136,7 +136,9 @@ Doc.prototype.initFunc = function() {
                 // 必为小节
                 $(titleObject[i]).attr('data-chapter', lastChapter)
                                  .attr('data-url', '#!/' + lastChapter + '/' + that.getElementTitle(titleObject[i]));
-                that.sectionTree[lastChapter].push(that.getElementTitle(titleObject[i]));
+                if ($(titleObject[i]).hasClass('title-in-content')) {
+                    that.sectionTree[lastChapter].push(that.getElementTitle(titleObject[i]));
+                }
             }
             $(titleObject[i]).attr('data-title', that.getElementTitle(titleObject[i]))
                              .addClass('title-' + that.getElementTitle(titleObject[i]));
