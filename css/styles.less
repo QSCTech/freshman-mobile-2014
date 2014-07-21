@@ -46,6 +46,10 @@ h1 {
         background-color: rgba(255, 255, 255, 0);
         -webkit-transform: translate3d(0, 0, 0);
         transform: translate3d(0, 0, 0);
+        transition: all 0.3s linear;
+        &.active {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
         .bar-btn {
             background-color: rgba(255,255,255,0.7);
             width: 67%;
