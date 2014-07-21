@@ -10,7 +10,7 @@ var binFind = function(a, n, f) {
     right = n;
     mid = parseInt(right / 2);
     while (left <= mid && right >= mid) {
-        if (f == a[mid] || (f > a[mid] && f < a[mid+1])) {
+        if (f == a[mid] || (f > a[mid] && f < a[mid+1]) || (f > a[mid] && mid+1 == n)) {
             return mid;
         } else if (f < a[mid]) {
             right = mid - 1;
