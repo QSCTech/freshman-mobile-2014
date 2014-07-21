@@ -169,15 +169,18 @@ Doc.prototype.initFunc = function() {
         if (!url) {
             url = decodeURIComponent(window.location.href);
         }
-        if (!/[#][!]\//.test(url)) return;
-        var path = url.split('#!/');
-        path = path.pop().split('/');
-        that.applyPath(path);
+        if (!/[#][!]\//.test(url)) {
+            that.applyPath([]); // 首页
+        } else {
+            var path = url.split('#!/');
+            path = path.pop().split('/');
+            that.applyPath(path);
+        }
     };
     this.applyPath = function(path) {
         // 一共可能有三层path，分为chapter / section / subsection
         if (console && console.log) {
-            console.log(path);
+            console.log('Apply path: ', path);
         }
         if (path[0]) {
             if (path[0] == '下载') {
