@@ -79,7 +79,7 @@ var Doc = function(md) {
         that.currentTitle = currentTitle;
     };
     //window.onscroll = that.handleScroll;
-    setInterval(that.handleScroll, 1000);
+    setInterval(that.handleScroll, 500);
 };
 Doc.prototype.initFunc = function() {
     var that = this;
