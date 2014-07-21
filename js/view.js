@@ -48,6 +48,8 @@ var Doc = function(md) {
             right = n;
             mid = right / 2;
             while (left <= mid && right >= mid) {
+console.log(mid);
+console.log(a[mid]);
                 if (f == a[mid] || (f > a[mid] && f < a[mid+1])) {
                     return mid;
                 } else if (f < a[mid]) {
@@ -60,7 +62,6 @@ var Doc = function(md) {
             return -1;
         };
         currentTitleID = binFind(that.positionTable, that.positionTable.length, currentTop);
-console.log(currentTitleID);
         if (currentTitleID == -1 || typeof that.nameTable[currentTitleID] == 'undefined') return;
         that.updateTitle(that.nameTable[currentTitleID]);
         that.updateUrl($('.title-' + that.nameTable[currentTitleID]).attr('data-url'));
