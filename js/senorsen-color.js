@@ -32,7 +32,8 @@ String.prototype.hexRgb = function(retarr) {
 };
 
 String.prototype.hexRgba = function(a) {
-    var rgb = this.hexRgb(true);
+    var rgb = this.hexRgb(true),
+        r = rgb[0], g = rgb[1], b = rgb[2];
     return 'rgba(' + r + ', ' + g + ', ' + b + ', ' + a + ')';
 };
 
