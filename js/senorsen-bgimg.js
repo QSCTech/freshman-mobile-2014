@@ -33,9 +33,11 @@ var Bgimg = function() {
         });
     };
     this.startDeviceOrientation = function() {
+        console.log('[Senorsen-bgimg] Device Orientation Started. ');
         window.addEventListener('deviceorientation', that.checkDeviceOrientation);
     };
     this.stopDeviceOrientation = function() {
+        console.log('[Senorsen-bgimg] Device Orientation Stopped. ');
         window.removeEventListener('deviceorientation', that.checkDeviceOrientation);
     };
 };
