@@ -72,7 +72,7 @@ var Doc = function(md) {
             currentTitleID = -1,
             currentChapter = '',
             currentChapterID = -1;
-        currentTop += 1 + that.topOffset;
+        currentTop += 50 + that.topOffset;
         currentChapterID = binFind(that.chapterPositionTable, that.chapterPositionTable.length, currentTop);
         if (currentChapterID != that.currentChapterID) {
             // 切换新的chapter了，庆祝一下？
