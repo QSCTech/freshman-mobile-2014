@@ -84,7 +84,6 @@ Doc.prototype.initFunc = function() {
         var path = url.split('#!/');
         path = path.pop().split('/');
         that.applyPath(path);
-        alert(path[0]);
     };
     this.applyPath = function(path) {
         // 一共可能有三层path，分为chapter / section / subsection
@@ -116,6 +115,7 @@ Doc.prototype.initFunc = function() {
         $(document.body).scrollTop(-that.topOffset + that.pages[page].offset().top);
     };
     this.switchChapter = function(title, gesture) {
+alert(title);
         $(document.body).scrollTop(-that.topOffset + that.pages[that.currentPage].find('h1.title-' + title).offset().top);
     };
     this.switchSection = function(title) {
