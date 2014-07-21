@@ -117,6 +117,7 @@ Doc.prototype.initFunc = function() {
         if (!url) {
             url = decodeURIComponent(window.location.href);
         }
+        if (!/[#][!]\//.test(url)) return;
         var path = url.split('#!/');
         path = path.pop().split('/');
         that.applyPath(path);
