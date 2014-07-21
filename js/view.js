@@ -222,6 +222,7 @@ Doc.prototype.initFunc = function() {
             that.currentThemeColor = that.defaultColor;
             bgimg.setBackground(that.pages.cover, 'img/cover_mobile.jpg');
             bgimg.startDeviceOrientation();
+            $('#nav-menu').html('');
         } else {
             for (var i in that.chapterTree) {
                 if (that.chapterTree[i] == title) {
@@ -273,9 +274,6 @@ Doc.prototype.initFunc = function() {
         // gesture 用于判断是否为用户滑动。如果是，那么将采用其他动画。
         that.currentPage = page;
         scroll(0, 50 -that.topOffset + that.pages[page].offset().top);
-        if (page != 'content') {
-            $('#nav-menu').html('');
-        }
     };
     this.switchChapter = function(title, gesture) {
         that.currentChapter = title;
