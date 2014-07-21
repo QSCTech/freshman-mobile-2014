@@ -38,7 +38,7 @@ var Doc = function(md) {
     $html.find('img[alt=cover]').addClass('img-cover');
     window.$html = $html;
     $html.find('h1, h2').addClass('title-in-content');
-    this.$content = $('#content').html($html);
+    this.$content = $('#content-layer').html($html);
     var index = $html.clone().filter('h1, h2');
     index.removeClass('title-in-content').addClass('title-in-index');
     $('#cover-btn').html(index);
