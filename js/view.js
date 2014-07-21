@@ -53,7 +53,7 @@ var Doc = function(md) {
     this.chapterTree = [];
     this.chapterPositionTable = [];
     this.themeColors = window.themeColors;
-    this.defaultColor = '82c1e6';
+    this.defaultColor = 'rgba(255,132,0,0.5)';
     this.currentThemeColor = this.defaultColor;
     this.currentChapter = '';
     this.currentChapterID = -1;
@@ -220,11 +220,11 @@ Doc.prototype.initFunc = function() {
         console.log('current chapter: ' + title);
         console.log('current theme color: ' + that.currentThemeColor);
         $('#nav-bar').css({
-            'background-color': '#' + that.currentThemeColor,
-            'box-shadow': '0 0 5px #' + that.currentThemeColor
+            'background-color': that.currentThemeColor,
+            'box-shadow': '0 0 5px ' + that.currentThemeColor
         }); 
         $(document.body).css({
-            'background-color': ('#' + that.currentThemeColor).hexRgba(0.1)
+            'background-color': (that.currentThemeColor).hexRgba(0.1)
         });
     };
     this.updateTitle = function(title, chapter) {
