@@ -110,7 +110,7 @@ Doc.prototype.initFunc = function() {
     };
     this.updateUrl = function(url) {
         url = location.href.split('#!/')[0] + url;
-        window.history.pushState('浙江大学新生手册', '浙江大学新生手册', url);
+        window.history.pushState(document.title, document.title, url);
     };
     this.applyUrl = function(url) {
         if (!url) {
@@ -141,6 +141,10 @@ Doc.prototype.initFunc = function() {
                 }
             }
         }
+    };
+    this.updateTitle = function(title) {
+        document.title = '浙江大学新生手册移动版 - ' + title;
+        
     };
     this.topOffset = 60;
     this.currentPage = 'cover';
