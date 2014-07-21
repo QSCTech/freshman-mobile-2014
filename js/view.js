@@ -4,6 +4,24 @@
  * @copyright Qiu Shi Chao
  */
 
+var binFind = function(a, n, f) {
+    var left, right, mid;
+    left = 0;
+    right = n;
+    mid = parseInt(right / 2);
+    while (left <= mid && right >= mid) {
+        if (f == a[mid] || (f > a[mid] && f < a[mid+1])) {
+            return mid;
+        } else if (f < a[mid]) {
+            right = mid - 1;
+        } else {
+            left = mid + 1;
+        }
+        mid = parseInt((left + right) / 2);
+    }
+    return -1;
+};
+
 var Doc = function(md) {
     var that = this, html = markdown.toHTML(md);
     // 匹配子标题，与电脑版略有不同请注意。
@@ -55,23 +73,6 @@ var Doc = function(md) {
             currentChapter = '',
             currentChapterID = -1;
         currentTop += 1 + that.topOffset;
-        var binFind = function(a, n, f) {
-            var left, right, mid;
-            left = 0;
-            right = n;
-            mid = parseInt(right / 2);
-            while (left <= mid && right >= mid) {
-                if (f == a[mid] || (f > a[mid] && f < a[mid+1])) {
-                    return mid;
-                } else if (f < a[mid]) {
-                    right = mid - 1;
-                } else {
-                    left = mid + 1;
-                }
-                mid = parseInt((left + right) / 2);
-            }
-            return -1;
-        };
         currentChapterID = binFind(that.chapterPositionTable, that.chapterPositionTable.length, currentTop);
         if (currentChapterID != that.currentChapterID) {
             // 切换新的chapter了，庆祝一下？
@@ -83,6 +84,8 @@ var Doc = function(md) {
             that.currentChapterID = currentChapterID;
             that.currentChapter = currentChapter;
             that.updateChapter(currentChapter);
+        } else {
+            currentChapter = that.currentChapter;
         }
         
         currentTitleID = binFind(that.positionTable, that.positionTable.length, currentTop);
@@ -185,7 +188,7 @@ Doc.prototype.initFunc = function() {
                 that.switchPage('content');
                 that.switchChapter(path[0]);
                 if (path[1]) {
-                    that.switchSection(path[1]);
+                    that.switchSection(path[1], path[0]);
                 }
                 if (path[2]) {
                     that.switchSubsection(path[3]);
@@ -238,9 +241,15 @@ Doc.prototype.initFunc = function() {
     this.switchChapter = function(title, gesture) {
         that.currentChapter = title;
         scroll(0, -that.topOffset + that.pages[that.currentPage].find('h1.title-' + title).offset().top);
+        that.updateTitle(title);
+        that.updateChapter(title);
     };
-    this.switchSection = function(title) {
+    this.switchSection = function(title, chapter) {
         scroll(0, -that.topOffset + that.pages[that.currentPage].find('h2.title-' + title).offset().top);
+        that.updateTitle(title, chapter);
+        if (that.currentChapter != chapter) {
+            that.updateChapter(chapter);
+        }
     };
     this.switchSubsection = function(title) {
         $('h3').each(function() {
