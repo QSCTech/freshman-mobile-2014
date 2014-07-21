@@ -15,8 +15,12 @@ var Nav = function() {
         if (that.status) {
             // 现在为打开状态，需要关闭
             $(this).removeClass('active');
+            $('#nav-drawer-gray-layer').addClass('close');
+            $('#nav-drawer').addClass('close');
         } else {
             $(this).addClass('active');
+            $('#nav-drawer-gray-layer').removeClass('close');
+            $('#nav-drawer').removeClass('close');
         }
         that.status = !that.status;
     });
