@@ -185,6 +185,10 @@ Doc.prototype.initFunc = function() {
             }
         }
         console.log('current theme color: ' + that.currentThemeColor);
+        $('#nav-title').css({
+            'background-color': '#' + that.currentThemeColor,
+            'box-shadow': '0 0 5px #' + that.currentThemeColor
+        }); 
     };
     this.updateTitle = function(title) {
         var pageTitle = '浙江大学新生手册移动版';
