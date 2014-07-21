@@ -71,6 +71,7 @@ var Doc = function(md) {
         }
         currentTitle = that.nameTable[currentTitleID];
         that.updateTitle(currentTitle);
+        alert(currentTitle);
         //that.updateUrl($('.title-' + that.nameTable[currentTitleID]).attr('data-url'));
         // pushState太卡了
         that.currentTitleID = currentTitleID;
