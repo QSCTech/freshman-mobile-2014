@@ -12,6 +12,7 @@ var Nav = function() {
     $('#nav-drawer-gray-layer')[this.tapevent](function() {
         $(this).addClass('close');
         $('#nav-drawer').addClass('close');
+        $('#nav-bar-btn').removeClass('active');
         that.status = false;
     });
     $('#nav-bar-btn')[this.tapevent](function(e) {
