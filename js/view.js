@@ -159,7 +159,7 @@ Doc.prototype.initFunc = function() {
 
         // tap or click bind for nav-btn
         $('.page-tap')[eventFunc](function() {
-            that.switchPage($('.page-tap').attr('data-page'));
+            that.switchPage($(this).attr('data-page'));
         });
     };
     this.updateUrl = function(url) {
