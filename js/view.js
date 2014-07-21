@@ -232,6 +232,7 @@ Doc.prototype.initFunc = function() {
                     var handleSectionClick = function() {
                         that.applyUrl('#!/' + $(this).attr('data-chapter') + '/' + $(this).attr('data-section'));
                     };
+                    $('#nav-menu').append('<div class="menu-btn drawer-btn" data-chapter="' + title + '" onclick="doc.switchChapter(\'' + title + '\')">' + title + '篇</div>');
                     for (var j in that.sectionTree[title]) {
                         $('#nav-menu').append($('<div class="menu-btn drawer-btn" data-chapter="'+ title +'" data-section="'+ that.sectionTree[title][j] + '">&gt; ' + that.sectionTree[title][j] + '</div>').click(handleSectionClick));
                     }
@@ -258,9 +259,9 @@ Doc.prototype.initFunc = function() {
         } else {
             document.title = title + ' - ' + pageTitle;
         }
-        var showTitle = title == '' ? '浙江大学新生手册' : title;
+        var showTitle = title == '' ? '浙江大学新生手册' : (title + '篇');
         if (chapter && chapter != title) {
-            showTitle = chapter + ' - ' + title;
+            showTitle = chapter + '篇 - ' + title;
         }
         $('#nav-title').text(showTitle);
         console.log('update title: ' + document.title);
