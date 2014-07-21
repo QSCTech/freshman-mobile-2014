@@ -32,6 +32,10 @@ var Doc = function(md) {
     };
     this.positionTable = [];
     this.nameTable = [];
+    this.chapterTree = [];
+    this.themeColors = window.themeColors;
+    this.defaultColor = '#82c1e6';
+    this.currentThemeColor = this.defaultColor;
     this.initFunc();
     this.parseSections();
     // tap or click
@@ -96,6 +100,7 @@ Doc.prototype.initFunc = function() {
                 // 大章节标题
                 lastChapter = that.getElementTitle(titleObject[i]);
                 $(titleObject[i]).attr('data-url', '#!/' + lastChapter);
+                that.chapterTree.push(that.getElementTitle(titleObject[i]));
             } else {
                 // 必为小节
                 $(titleObject[i]).attr('data-chapter', lastChapter)
@@ -166,6 +171,20 @@ Doc.prototype.initFunc = function() {
                 }
             }
         }
+    };
+    this.updateChapter = function(title) {
+        if (title == '') {
+            that.currentThemeColor = that.defaultColor;
+        } else {
+            for (var i in that.chapterTree) {
+                if (that.chapterTree[i] == title) {
+                    // i为标号
+                    that.currentThemeColor = that.themeColors[i];
+                    break;
+                }
+            }
+        }
+        console.log('current theme color: ' + that.currentThemeColor);
     };
     this.updateTitle = function(title) {
         var pageTitle = '浙江大学新生手册移动版';
