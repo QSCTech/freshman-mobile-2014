@@ -83,6 +83,8 @@ Doc.prototype.initFunc = function() {
     this.parseSections = function() {
         var titleObject = $('h1, h2'), 
             lastChapter = '';
+        $('#content').find('h1, h2, h3, h4').addClass('title-in-content');
+        $('#cover').find('h1, h2, h3, h4').addClass('title-in-cover');
         for (var i = 0; i < titleObject.length; i++) {
             if ($(titleObject[i]).attr('tagName').toLowerCase() == 'h1') {
                 // 大章节标题
@@ -95,9 +97,11 @@ Doc.prototype.initFunc = function() {
             }
             $(titleObject[i]).attr('data-title', that.getElementTitle(titleObject[i]))
                              .addClass('title-' + that.getElementTitle(titleObject[i]));
-            that.positionTable.push($(titleObject[i]).offset().top);
-            that.nameTable.push(that.getElementTitle(titleObject[i]));
-            console.log('[' + that.getElementTitle(titleObject[i]) + '] -> ' + $(titleObject[i]).offset().top);
+            if ($(titleObject[i]).hasClass('title-in-content')) {
+                that.positionTable.push($(titleObject[i]).offset().top);
+                that.nameTable.push(that.getElementTitle(titleObject[i]));
+                console.log('[' + that.getElementTitle(titleObject[i]) + '] -> ' + $(titleObject[i]).offset().top);
+            }
         }
     };
     this.bindLinkKeys = function() {
