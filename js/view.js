@@ -115,7 +115,7 @@ Doc.prototype.initFunc = function() {
                 lastChapter = that.getElementTitle(titleObject[i]);
                 $(titleObject[i]).attr('data-url', '#!/' + lastChapter);
                 that.chapterTree.push(that.getElementTitle(titleObject[i]));
-                that.chapterPositionTable.push($(title[i]).offset().top);
+                that.chapterPositionTable.push($(titleObject[i]).offset().top);
             } else {
                 // 必为小节
                 $(titleObject[i]).attr('data-chapter', lastChapter)
@@ -200,7 +200,7 @@ Doc.prototype.initFunc = function() {
             }
         }
         that.currentChapter = title;
-        console.log('current title: ' + title);
+        console.log('current chapter: ' + title);
         console.log('current theme color: ' + that.currentThemeColor);
         $('#nav-bar').css({
             'background-color': '#' + that.currentThemeColor,
@@ -214,7 +214,8 @@ Doc.prototype.initFunc = function() {
         } else {
             document.title = pageTitle + ' - ' + title;
         }
-        console.log(document.title);
+        $('#nav-title').text(title);
+        console.log('update title: ' + document.title);
     };
     this.topOffset = 60;
     this.currentPage = 'cover';
