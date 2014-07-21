@@ -68,6 +68,7 @@ var Doc = function(md) {
         that.currentTitleID = currentTitleID;
         if (currentTitleID == -1 || typeof that.nameTable[currentTitleID] == 'undefined') {
             that.updateTitle('');
+            that.updateUrl('');
             return;
         }
         currentTitle = that.nameTable[currentTitleID];
@@ -129,7 +130,11 @@ Doc.prototype.initFunc = function() {
         $('h2')[eventFunc](h2callback);
     };
     this.updateUrl = function(url) {
-        url = location.href.split('#!/')[0] + url;
+        if (url == '') {
+            url = location.href.split('#!/')[0];
+        } else {
+            url = location.href.split('#!/')[0] + url;
+        }
         window.history.pushState(document.title, document.title, url);
     };
     this.applyUrl = function(url) {
