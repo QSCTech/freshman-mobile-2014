@@ -28,7 +28,7 @@ var Wheelscroll = function() {
     };
     // end 
 
-    this.per = 50px;
+    this.per = 50;
     var handleWheel = function(e) {
         var wd = wheelDirection(e);
         if (wd > 0) {
