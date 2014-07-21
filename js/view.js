@@ -130,8 +130,8 @@ Doc.prototype.initFunc = function() {
                 if ($(titleObject[i]).hasClass('title-in-content')) {
                     that.chapterTree.push(that.getElementTitle(titleObject[i]));
                     that.chapterPositionTable.push($(titleObject[i]).offset().top);
+                    that.sectionTree[lastChapter] = [];
                 }
-                that.sectionTree[lastChapter] = [];
             } else {
                 // 必为小节
                 $(titleObject[i]).attr('data-chapter', lastChapter)
