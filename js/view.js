@@ -227,7 +227,14 @@ Doc.prototype.initFunc = function() {
                 if (that.chapterTree[i] == title) {
                     // i为标号
                     that.currentThemeColor = that.themeColors[i];
-                    
+                    // 在左侧抽屉中添加跳转子章节
+                    $('#nav-menu').html('');
+                    var handleSectionClick = function() {
+                        that.applyUrl('#!/' + $(this).attr('data-chapter') + '/' + $(this).attr('data-section'));
+                    };
+                    for (var j in that.sectionTree[title]) {
+                        $('#nav-menu').append($('<div class="menu-btn drawer-btn" data-chapter="'+ title +'" data-section="'+ that.sectionTree[title][j] + '">&gt; ' + that.sectionTree[title][j] + '</div>').click(handleSection);
+                    }
                     break;
                 }
             }
