@@ -9,6 +9,11 @@ var Nav = function() {
     this.status = false;
     this.tapevent = 'click';
     if (window.supportsTouch) this.tapevent = 'tap';
+    $('#nav-drawer-gray-layer')[this.tapevent](function() {
+        $(this).addClass('close');
+        $('#nav-drawer').addClass('close');
+        that.status = false;
+    });
     $('#nav-bar-btn')[this.tapevent](function(e) {
         e.preventDefault();
         e.stopPropagation();
