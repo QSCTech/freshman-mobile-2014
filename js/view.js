@@ -202,6 +202,7 @@ Doc.prototype.initFunc = function() {
         }
     };
     this.updateChapter = function(title) {
+        bgimg.stopDeviceOrientation();
         if (title == '') {
             that.currentThemeColor = that.defaultColor;
             bgimg.setBackground(that.pages.cover, 'img/cover_mobile.jpg');
