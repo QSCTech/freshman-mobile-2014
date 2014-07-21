@@ -19,6 +19,19 @@ h1, h2, h3, h4, em {
 h1 {
     font-size: 24px;
 }
+a {
+    color: #666;
+    text-decoration: underline;
+}
+div.hide-element-title {
+    color: #666;
+    text-decoration: none;
+    border-bottom: 1px dashed #8a8a8a;
+    &:after {
+        content: ' [点击展开]';
+        color: #aaa;
+    }
+}
 
 #nav-bar {
     position: fixed;
