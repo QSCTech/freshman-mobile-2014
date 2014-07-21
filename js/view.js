@@ -37,6 +37,8 @@ var Doc = function(md) {
     // tap or click
     this.bindLinkKeys();
 
+    this.currentTitleID = 0;
+    this.currentTitle = '';
     this.handleScroll = function() {
         // 需不需要二分法捏。。。
         // 虽然似乎不太需要，不过好久没写了……写一个吧～
@@ -62,6 +64,7 @@ var Doc = function(md) {
         };
         currentTitleID = binFind(that.positionTable, that.positionTable.length, currentTop);
         if (currentTitleID == -1 || typeof that.nameTable[currentTitleID] == 'undefined') return;
+        if (currentTitleID == that.currentTitleID) return; // no change
         currentTitle = that.nameTable[currentTitleID];
         that.updateTitle(currentTitle);
         //that.updateUrl($('.title-' + that.nameTable[currentTitleID]).attr('data-url'));
