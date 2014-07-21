@@ -49,7 +49,7 @@ var Doc = function(md) {
             mid = right / 2;
             while (left <= mid && right >= mid) {
                 if (f == a[mid] || f > a[mid] && f < a[mid+1]) {
-                    return mid;.
+                    return mid;
                 } else if (f < a[mid]) {
                     right = mid - 1;
                 } else {
