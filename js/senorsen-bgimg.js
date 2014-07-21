@@ -36,7 +36,7 @@ var Bgimg = function() {
         window.addEventListener('deviceorientation', that.checkDeviceOrientation);
     };
     this.stopDeviceOrientation = function() {
-        window.addEventListener('deviceorientation');
+        window.removeEventListener('deviceorientation');
     };
 };
 
