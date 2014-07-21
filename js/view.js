@@ -267,6 +267,7 @@ $(document).ready(function() {
     $.get('share/freshman.md', function(data) {
         doc = new Doc(data);
         // 打开的时候非常有可能带hash，所以检测一下
+        doc.updateChapter('');
         doc.applyUrl();
     }, 'text');
 
