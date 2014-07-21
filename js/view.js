@@ -45,6 +45,7 @@ var Doc = function(md) {
         var currentTop = document.body.scrollTop || window.scrollY,
             currentTitle = '',
             currentTitleID = -1;
+        currentTop += 1 + that.offsetTop;
         var binFind = function(a, n, f) {
             var left, right, mid;
             left = 0;
@@ -71,7 +72,6 @@ var Doc = function(md) {
         }
         currentTitle = that.nameTable[currentTitleID];
         that.updateTitle(currentTitle);
-        alert(currentTitle);
         //that.updateUrl($('.title-' + that.nameTable[currentTitleID]).attr('data-url'));
         // pushState太卡了
         that.currentTitleID = currentTitleID;
