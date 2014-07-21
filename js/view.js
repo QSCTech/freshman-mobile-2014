@@ -231,8 +231,9 @@ Doc.prototype.initFunc = function() {
                     $('#nav-menu').html('');
                     var handleSectionClick = function() {
                         that.applyUrl('#!/' + $(this).attr('data-chapter') + '/' + $(this).attr('data-section'));
+                        nav.closeDrawer();
                     };
-                    $('#nav-menu').append('<div class="menu-btn drawer-btn" data-chapter="' + title + '" onclick="doc.switchChapter(\'' + title + '\')">' + title + '篇</div>');
+                    $('#nav-menu').append('<div class="menu-btn drawer-btn" data-chapter="' + title + '" onclick="doc.switchChapter(\'' + title + '\'); nav.closeDrawer();">' + title + '篇</div>');
                     for (var j in that.sectionTree[title]) {
                         $('#nav-menu').append($('<div class="menu-btn drawer-btn" data-chapter="'+ title +'" data-section="'+ that.sectionTree[title][j] + '">&gt; ' + that.sectionTree[title][j] + '</div>').click(handleSectionClick));
                     }
