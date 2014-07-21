@@ -256,12 +256,12 @@ Doc.prototype.initFunc = function() {
     };
     this.switchChapter = function(title, gesture) {
         that.currentChapter = title;
-        scroll(0, -that.topOffset + that.pages[that.currentPage].find('h1.title-' + title).offset().top);
+        document.body.scrollTop = -that.topOffset + that.pages[that.currentPage].find('h1.title-' + title).offset().top;
         that.updateTitle(title);
         that.updateChapter(title);
     };
     this.switchSection = function(title, chapter) {
-        scroll(0, -that.topOffset + that.pages[that.currentPage].find('h2.title-' + title).offset().top);
+        document.body.scrollTop = -that.topOffset + that.pages[that.currentPage].find('h2.title-' + title).offset().top;
         that.updateTitle(title, chapter);
         if (that.currentChapter != chapter) {
             that.updateChapter(chapter);
@@ -270,7 +270,7 @@ Doc.prototype.initFunc = function() {
     this.switchSubsection = function(title) {
         $('h3').each(function() {
             if (that.getElementTitle(this) == title) {
-                scroll(0, -that.topOffset + $(this).offset().top);
+                document.body.scrollTop = -that.topOffset + $(this).offset().top;
             }
         });
     };
