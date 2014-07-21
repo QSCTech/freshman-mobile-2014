@@ -6,8 +6,13 @@
 
 String.prototype.hexRgb = function(retarr) {
     var that = this,
-        hex = this.split('#')[1].toLocaleLowerCase(),
+        hex, 
         newhex = '';
+    try {
+       hex = this.split('#')[1].toLocaleLowerCase();
+    } catch (e) {
+        return this;
+    }
     // 可能有3位十六进制或者6位十六进制
     var regexps = [/^[0-9a-f]{3}$/, /^[0-9a-f]{6}$/];
     if (regexps[1].test(hex)) {
