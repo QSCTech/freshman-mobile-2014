@@ -25,8 +25,8 @@ var Bgimg = function() {
         that.alpha = alpha;
         that.beta = beta;
         that.gamma = gamma;
-        that.y = beta;
-        that.x = gamma;
+        that.y = beta * 2 - 100;
+        that.x = gamma * 2 - 100;
         that.obj.css({
             'background-position-x': that.x,
             'background-position-y': that.y
