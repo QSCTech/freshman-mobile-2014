@@ -38,8 +38,26 @@ String.prototype.hexRgb = function(retarr) {
 
 String.prototype.hexRgba = function(a) {
     var rgb = this.hexRgb(true);
-    if (!$.isArray(rgb)) return rgb;
+    if (!$.isArray(rgb)) {
+        rgb = this.parseRgb();
+    }
     var r = rgb[0], g = rgb[1], b = rgb[2];
     return 'rgba(' + r + ', ' + g + ', ' + b + ', ' + a + ')';
+};
+
+String.prototype.parseRgb = function() {
+    var regexp = /^rgb\((\d+),\s?(\d+),\s?(\d+)\)$/,
+        regexpa = /^rgba\((\d+),\s?(\d+),\s?(\d+),\s?(.+)\)$/;
+    var r;
+    var str = this.toLowerCase();
+    if (regexp.test(str)) {
+        r = regexp.exec(str);
+        return [r[1], r[2], r[3]];
+    } else if (regexpa.test(str)) {
+        r = regexpa.exec(str);
+        return r[r[1], r[2], r[3]];
+    } else {
+        return false;
+    }
 };
 
