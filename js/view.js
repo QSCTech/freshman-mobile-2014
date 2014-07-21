@@ -215,6 +215,9 @@ Doc.prototype.initFunc = function() {
             'background-color': '#' + that.currentThemeColor,
             'box-shadow': '0 0 5px #' + that.currentThemeColor
         }); 
+        $(document.body).css({
+            'background-color': ('#' + that.currentThemeColor).hexRgba(0.1)
+        });
     };
     this.updateTitle = function(title, chapter) {
         var pageTitle = '浙江大学新生手册移动版';
