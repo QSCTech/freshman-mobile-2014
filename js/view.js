@@ -67,6 +67,8 @@ var Doc = function(md) {
     this.currentTitle = '';
     this.nameTable.push('');
     this.positionTable.push($('.page').filter('#content').next().offset().top);
+    this.chapterTree.push('');
+    this.chapterPositionTable.push($('.page').filter('#content').next().offset().top);
     this.handleScroll = function() {
         // 需不需要二分法捏。。。
         // 虽然似乎不太需要，不过好久没写了……写一个吧～
