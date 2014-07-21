@@ -73,9 +73,13 @@ var Doc = function(md) {
             return -1;
         };
         currentChapterID = binFind(that.chapterPositionTable, that.chapterPositionTable.length, currentTop);
-        if (currentChapterID != -1 && currentChapterID != that.currentChapterID) {
+        if (currentChapterID != that.currentChapterID) {
             // 切换新的chapter了，庆祝一下？
-            currentChapter = that.chapterTree[currentChapterID];
+            if (currentChapterID == -1) {
+                currentChapter = '';
+            } else {
+                currentChapter = that.chapterTree[currentChapterID];
+            }
             that.currentChapterID = currentChapterID;
             that.currentChapter = currentChapter;
             that.updateChapter(currentChapter);
@@ -90,7 +94,7 @@ var Doc = function(md) {
             return;
         }
         currentTitle = that.nameTable[currentTitleID];
-        that.updateTitle(currentTitle);
+        that.updateTitle(currentTitle, currentChapter);
         that.updateUrl($('.title-' + that.nameTable[currentTitleID]).attr('data-url'));
         that.currentTitleID = currentTitleID;
         that.currentTitle = currentTitle;
@@ -209,7 +213,7 @@ Doc.prototype.initFunc = function() {
             'box-shadow': '0 0 5px #' + that.currentThemeColor
         }); 
     };
-    this.updateTitle = function(title) {
+    this.updateTitle = function(title, chapter) {
         var pageTitle = '浙江大学新生手册移动版';
         if (title == '') {
             document.title = pageTitle;
@@ -218,6 +222,9 @@ Doc.prototype.initFunc = function() {
             document.title = pageTitle + ' - ' + title;
         }
         var showTitle = title == '' ? '浙江大学新生手册' : title;
+        if (chapter) {
+            showTitle = chapter + ' - ' + title;
+        }
         $('#nav-title').text(showTitle);
         console.log('update title: ' + document.title);
     };
