@@ -115,8 +115,8 @@ Doc.prototype.initFunc = function() {
         $(document.body).scrollTop(-that.topOffset + that.pages[page].offset().top);
     };
     this.switchChapter = function(title, gesture) {
-alert(title);
         $(document.body).scrollTop(-that.topOffset + that.pages[that.currentPage].find('h1.title-' + title).offset().top);
+alert(that.pages[that.currentPage].find('h1.title-' + title).text());
     };
     this.switchSection = function(title) {
         $(document.body).scrollTop(-that.topOffset + that.pages[that.currentPage].find('h2.title-' + title).offset().top);
