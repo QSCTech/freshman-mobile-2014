@@ -55,7 +55,7 @@ String.prototype.parseRgb = function() {
         return [r[1], r[2], r[3]];
     } else if (regexpa.test(str)) {
         r = regexpa.exec(str);
-        return r[r[1], r[2], r[3]];
+        return [r[1], r[2], r[3]];
     } else {
         return false;
     }
