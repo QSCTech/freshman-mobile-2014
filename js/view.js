@@ -34,7 +34,7 @@ var Doc = function(md) {
     this.nameTable = [];
     this.chapterTree = [];
     this.themeColors = window.themeColors;
-    this.defaultColor = '#82c1e6';
+    this.defaultColor = '82c1e6';
     this.currentThemeColor = this.defaultColor;
     this.initFunc();
     this.parseSections();
