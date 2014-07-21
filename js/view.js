@@ -45,7 +45,7 @@ var Doc = function(md) {
         var currentTop = document.body.scrollTop || window.scrollY,
             currentTitle = '',
             currentTitleID = -1;
-        currentTop += 1 + that.offsetTop;
+        currentTop += 1 + that.topOffset;
         var binFind = function(a, n, f) {
             var left, right, mid;
             left = 0;
