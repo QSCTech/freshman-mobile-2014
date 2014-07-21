@@ -65,7 +65,7 @@ var Doc = function(md) {
         that.updateTitle(that.nameTable[currentTitleID]);
         that.updateUrl($('.title-' + that.nameTable[currentTitleID]).attr('data-url'));
     };
-    setInterval(this.handleScroll, 500);
+    //setInterval(this.handleScroll, 500);
 };
 Doc.prototype.initFunc = function() {
     var that = this;
