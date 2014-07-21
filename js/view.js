@@ -60,6 +60,7 @@ var Doc = function(md) {
             return -1;
         };
         currentTitleID = binFind(that.positionTable, that.positionTable.length, currentTop);
+        if (currentTitleID == -1 || typeof that.nameTable[currentTitleID] == 'undefined') return;
         that.updateTitle(that.nameTable[currentTitleID]);
         that.updateUrl($('.title-' + that.nameTable[currentTitleID]).attr('data-url'));
     };
