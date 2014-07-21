@@ -116,13 +116,16 @@ Doc.prototype.initFunc = function() {
     };
     this.switchChapter = function(title, gesture) {
         scroll(0, -that.topOffset + that.pages[that.currentPage].find('h1.title-' + title).offset().top);
-alert(that.pages[that.currentPage].find('h1.title-' + title).text() + that.pages[that.currentPage].find('h1.title-' + title).offset().top);
     };
     this.switchSection = function(title) {
         scroll(0, -that.topOffset + that.pages[that.currentPage].find('h2.title-' + title).offset().top);
     };
     this.switchSubsection = function(title) {
-        
+        $('h3').each(function() {
+            if ($(this).text() == title) {
+                scroll(0, -that.topOffset + $(this).offset().top);
+            }
+        });
     };
 };
 
@@ -131,6 +134,29 @@ $(document).ready(function() {
         doc = new Doc(data);
         
     }, 'text');
+
+    // 劫持链接点击
+    // [ATTENTION] window.open() will not open in new tab if it is not happening on actual click event. In the example given the url is being opened on actual click event.
+    $('body').on('click', 'a', function(e) {
+        var href = $(this).attr('href');
+        if (!href) return;
+        e.preventDefault();
+        e.stopPropagation();
+        var regexp = '/' + location.href.split('#!/')[0].replace('/', '\\/') + '/';
+        if (eval(regexp).test(href)) {
+            // 内部章节跳转
+            // as like #!/入校 or #!/入校/懂得浙大 or #!/入校/懂得浙大/两大学院三大学园
+            doc.applyUrl(href);
+        } else {
+            // 新窗口中打开其他链接
+            window.open(href, '_blank');
+        }
+    });
+
+    $(window).bind('hashchange', function() {
+        doc.applyUrl();
+    });
+
     // Device Orientation Test
     // 测试表明，gamma为左右翻转手机，beta为上下翻转。
     $('#orientation-test').css('display', 'none');
