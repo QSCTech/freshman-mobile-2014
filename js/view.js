@@ -233,7 +233,7 @@ Doc.prototype.initFunc = function() {
                         that.applyUrl('#!/' + $(this).attr('data-chapter') + '/' + $(this).attr('data-section'));
                     };
                     for (var j in that.sectionTree[title]) {
-                        $('#nav-menu').append($('<div class="menu-btn drawer-btn" data-chapter="'+ title +'" data-section="'+ that.sectionTree[title][j] + '">&gt; ' + that.sectionTree[title][j] + '</div>').click(handleSection);
+                        $('#nav-menu').append($('<div class="menu-btn drawer-btn" data-chapter="'+ title +'" data-section="'+ that.sectionTree[title][j] + '">&gt; ' + that.sectionTree[title][j] + '</div>').click(handleSection));
                     }
                     break;
                 }
