@@ -185,7 +185,7 @@ Doc.prototype.initFunc = function() {
             }
         }
         console.log('current theme color: ' + that.currentThemeColor);
-        $('#nav-title').css({
+        $('#nav-bar').css({
             'background-color': '#' + that.currentThemeColor,
             'box-shadow': '0 0 5px #' + that.currentThemeColor
         }); 
