@@ -194,6 +194,8 @@ Doc.prototype.initFunc = function() {
                     that.switchSubsection(path[3]);
                 }
             }
+        } else {
+            that.switchPage('cover');
         }
     };
     this.updateChapter = function(title) {
@@ -240,6 +242,9 @@ Doc.prototype.initFunc = function() {
         // gesture 用于判断是否为用户滑动。如果是，那么将采用其他动画。
         that.currentPage = page;
         scroll(0, -that.topOffset + that.pages[page].offset().top);
+        if (page == 'cover') {
+            bgimg.setBackground(that.pages.cover, 'img/cover_mobile.jpg');
+        }
     };
     this.switchChapter = function(title, gesture) {
         that.currentChapter = title;
@@ -264,6 +269,7 @@ Doc.prototype.initFunc = function() {
 };
 
 $(document).ready(function() {
+    bgimg = new Bgimg();
     $.get('share/freshman.md', function(data) {
         doc = new Doc(data);
         // 打开的时候非常有可能带hash，所以检测一下
@@ -296,11 +302,13 @@ $(document).ready(function() {
 
     // Device Orientation Test
     // 测试表明，gamma为左右翻转手机，beta为上下翻转。
+    /*
     $('#orientation-test').css('display', 'none');
     window.addEventListener('deviceorientation', function(event) {
         $('#event-alpha').text(event.alpha);
         $('#event-beta').text(event.beta);
         $('#event-gamma').text(event.gamma);
     }, true);
+    */
 });
 
