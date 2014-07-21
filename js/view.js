@@ -156,6 +156,11 @@ Doc.prototype.initFunc = function() {
         }
         $('h1')[eventFunc](h1callback);
         $('h2')[eventFunc](h2callback);
+
+        // tap or click bind for nav-btn
+        $('.page-tap')[eventFunc](function() {
+            that.switchPage($('.page-tap').attr('data-page'));
+        });
     };
     this.updateUrl = function(url) {
         if (url == '') {

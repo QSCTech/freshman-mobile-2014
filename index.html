@@ -45,8 +45,8 @@ window.supportsDeviceOrientation = !!window.DeviceOrientationEvent;
         <div id="nav-menu">
             <div class="drawer-btn">测试</div>
         </div>
-        <div id="nav-downloads" class="drawer-btn">电子书下载</div>
-        <div id="nav-about" class="drawer-btn">关于作者</div>
+        <div id="nav-downloads" class="drawer-btn page-tap" data-page="downloads">电子书下载</div>
+        <div id="nav-about" class="drawer-btn page-tap" data-page="about">关于作者</div>
     </div>
     <div id="orientation-test">
         <div id="event-alpha"></div>
@@ -71,11 +71,12 @@ window.supportsDeviceOrientation = !!window.DeviceOrientationEvent;
         </div>
     </div>
     <div id="content" class="page">
-        <div id="content-layer" style="padding-left: 10px; padding-right: 10px">
+        <div id="content-layer" class="page-layer">
             <!-- content, auto fiiled by script -->
         </div>
     </div>
-    <div id="downloads" class="page">
+    <div id="downloads" class="page page-downloads">
+        <div id="downloads-layer" class="page-layer">
         <h1>下载电子书</h1><br>
         随时随地在你的设备上阅读
         <p>
@@ -84,7 +85,17 @@ window.supportsDeviceOrientation = !!window.DeviceOrientationEvent;
             <a href="downloads/freshman.pdf">PDF电子书</a><br>
         </p>
     </div>
-    <div id="search" class="page">
+    <div id="about" class="page page-about">
+        <div id="about-layer" class="page-layer">
+            <div class="page-title">关于</div>
+            <div class="page-content">
+                浙江大学求是潮 技术研发中心<br>
+                Senorsen(张森) 于 2014-07-22<br>
+                <br>
+                注意：本新生手册内的文本未经原作者允许，禁止转载。<br>
+                &copy; 2001-2014 浙江大学求是潮<br>
+            </div>
+        </div>
     </div>
     </div>
 </body>
