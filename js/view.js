@@ -55,6 +55,7 @@ Doc.prototype.initFunc = function() {
             $(titleObject[i]).attr('data-title', $(titleObject[i]).text())
                              .addClass('title-' + $(titleObject[i]).text());
             that.positionTable[$(titleObject[i]).text()] = $(titleObject[i]).offset().top;
+            console.log('[' + $(titleObject[i]).text() + '] -> ' + $(titleObject[i]).offset().top);
         }
     };
     this.bindLinkKeys = function() {
