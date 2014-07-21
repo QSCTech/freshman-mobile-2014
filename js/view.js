@@ -46,9 +46,10 @@ var Doc = function(md) {
             var left, right, mid;
             left = 0;
             right = n;
-            mid = (right / 2).parseInt;
+            mid = (right / 2).parseInt()
+console.log(left + ' ' + right + ' ' + mid);
             while (left <= mid && right >= mid) {
-console.log(f);
+console.log(mid);
                 if (f == a[mid] || (f > a[mid] && f < a[mid+1])) {
                     return mid;
                 } else if (f < a[mid]) {
@@ -56,7 +57,7 @@ console.log(f);
                 } else {
                     left = mid + 1;
                 }
-                mid = ((left + right) / 2).parseInt;
+                mid = ((left + right) / 2).parseInt();
             }
             return -1;
         };
