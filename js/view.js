@@ -213,10 +213,12 @@ Doc.prototype.initFunc = function() {
         var pageTitle = '浙江大学新生手册移动版';
         if (title == '') {
             document.title = pageTitle;
+            title = '';
         } else {
             document.title = pageTitle + ' - ' + title;
         }
-        $('#nav-title').text(title);
+        var showTitle = title == '' ? '浙江大学新生手册' : title;
+        $('#nav-title').text(showTitle);
         console.log('update title: ' + document.title);
     };
     this.topOffset = 60;
