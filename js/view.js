@@ -225,7 +225,7 @@ Doc.prototype.initFunc = function() {
             document.title = pageTitle;
             title = '';
         } else {
-            document.title = pageTitle + ' - ' + title;
+            document.title = title + ' - ' + pageTitle;
         }
         var showTitle = title == '' ? '浙江大学新生手册' : title;
         if (chapter && chapter != title) {
