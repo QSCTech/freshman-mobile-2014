@@ -62,12 +62,12 @@ Doc.prototype.initFunc = function() {
     };
     this.bindLinkKeys = function() {
         var h1callback = function() {
-            var url = '#!/' + $(this).text();
+            var url = '#!/' + that.getElementTitle(this);
             that.updateUrl(url);
             that.applyUrl(url);
         };
         var h2callback = function() {
-            var url = '#!/' + $(this).attr('data-chapter') + '/' + $(this).text();
+            var url = '#!/' + $(this).attr('data-chapter') + '/' + that.getElementTitle(this);
             that.updateUrl(url);
             that.applyUrl(url);
         };
@@ -127,7 +127,7 @@ Doc.prototype.initFunc = function() {
     };
     this.switchSubsection = function(title) {
         $('h3').each(function() {
-            if ($(this).text() == title) {
+            if (that.getElementTitle(this) == title) {
                 scroll(0, -that.topOffset + $(this).offset().top);
             }
         });
