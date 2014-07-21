@@ -116,7 +116,7 @@ Doc.prototype.initFunc = function() {
     };
     this.switchChapter = function(title, gesture) {
         $(document.body).scrollTop(-that.topOffset + that.pages[that.currentPage].find('h1.title-' + title).offset().top);
-alert(that.pages[that.currentPage].find('h1.title-' + title).text());
+alert(that.pages[that.currentPage].find('h1.title-' + title).text() + that.pages[that.currentPage].find('h1.title-' + title).offset().top);
     };
     this.switchSection = function(title) {
         $(document.body).scrollTop(-that.topOffset + that.pages[that.currentPage].find('h2.title-' + title).offset().top);
