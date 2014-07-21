@@ -168,7 +168,7 @@ Doc.prototype.initFunc = function() {
         } else {
             document.title = pageTitle + ' - ' + title;
         }
-        console.log(pageTitle);
+        console.log(document.title);
     };
     this.topOffset = 60;
     this.currentPage = 'cover';
