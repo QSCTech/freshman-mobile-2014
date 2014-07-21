@@ -107,7 +107,7 @@ Doc.prototype.initFunc = function() {
             }
         }
     };
-    this.topOffset = 100;
+    this.topOffset = 60;
     this.currentPage = 'cover';
     this.switchPage = function(page, gesture) {
         // gesture 用于判断是否为用户滑动。如果是，那么将采用其他动画。
