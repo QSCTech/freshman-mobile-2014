@@ -63,7 +63,10 @@ var Doc = function(md) {
             return -1;
         };
         currentTitleID = binFind(that.positionTable, that.positionTable.length, currentTop);
-        if (currentTitleID == -1 || typeof that.nameTable[currentTitleID] == 'undefined') return;
+        if (currentTitleID == -1 || typeof that.nameTable[currentTitleID] == 'undefined') {
+            that.updateTitle('');
+            return;
+        }
         if (currentTitleID == that.currentTitleID) return; // no change
         currentTitle = that.nameTable[currentTitleID];
         that.updateTitle(currentTitle);
@@ -158,8 +161,13 @@ Doc.prototype.initFunc = function() {
         }
     };
     this.updateTitle = function(title) {
-        document.title = '浙江大学新生手册移动版 - ' + title;
-        console.log(title);
+        var pageTitle = '浙江大学新生手册移动版';
+        if (title == '') {
+            document.title = pageTitle;
+        } else {
+            document.title = pageTitle + ' - ' + title;
+        }
+        console.log(pageTitle);
     };
     this.topOffset = 60;
     this.currentPage = 'cover';
