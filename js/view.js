@@ -33,9 +33,12 @@ var Doc = function(md) {
     this.positionTable = [];
     this.nameTable = [];
     this.chapterTree = [];
+    this.chapterPositionTable = [];
     this.themeColors = window.themeColors;
     this.defaultColor = '82c1e6';
     this.currentThemeColor = this.defaultColor;
+    this.currentChapter = '';
+    this.currentChapterID = -1;
     this.initFunc();
     this.parseSections();
     // tap or click
@@ -48,7 +51,9 @@ var Doc = function(md) {
         // 虽然似乎不太需要，不过好久没写了……写一个吧～
         var currentTop = document.body.scrollTop || window.scrollY,
             currentTitle = '',
-            currentTitleID = -1;
+            currentTitleID = -1,
+            currentChapter = '',
+            currentChapterID = -1;
         currentTop += 1 + that.topOffset;
         var binFind = function(a, n, f) {
             var left, right, mid;
@@ -67,6 +72,15 @@ var Doc = function(md) {
             }
             return -1;
         };
+        currentChapterID = binFind(that.chapterPositionTable, that.chapterPositionTable.length, currentTop);
+        if (currentChapterID != -1 && currentChapterID != that.currentChapterID) {
+            // 切换新的chapter了，庆祝一下？
+            currentChapter = that.chapterTree[currentChapterID];
+            that.currentChapterID = currentChapterID;
+            that.currentChapter = currentChapter;
+            that.updateChapter(currentChapter);
+        }
+        
         currentTitleID = binFind(that.positionTable, that.positionTable.length, currentTop);
         if (currentTitleID == that.currentTitleID) return; // no change
         that.currentTitleID = currentTitleID;
@@ -101,6 +115,7 @@ Doc.prototype.initFunc = function() {
                 lastChapter = that.getElementTitle(titleObject[i]);
                 $(titleObject[i]).attr('data-url', '#!/' + lastChapter);
                 that.chapterTree.push(that.getElementTitle(titleObject[i]));
+                that.chapterPositionTable.push($(title[i]).offset().top);
             } else {
                 // 必为小节
                 $(titleObject[i]).attr('data-chapter', lastChapter)
@@ -184,6 +199,8 @@ Doc.prototype.initFunc = function() {
                 }
             }
         }
+        that.currentChapter = title;
+        console.log('current title: ' + title);
         console.log('current theme color: ' + that.currentThemeColor);
         $('#nav-bar').css({
             'background-color': '#' + that.currentThemeColor,
@@ -207,6 +224,7 @@ Doc.prototype.initFunc = function() {
         scroll(0, -that.topOffset + that.pages[page].offset().top);
     };
     this.switchChapter = function(title, gesture) {
+        that.currentChapter = title;
         scroll(0, -that.topOffset + that.pages[that.currentPage].find('h1.title-' + title).offset().top);
     };
     this.switchSection = function(title) {
