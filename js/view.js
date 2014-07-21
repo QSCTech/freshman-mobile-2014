@@ -84,6 +84,7 @@ Doc.prototype.initFunc = function() {
         var path = url.split('#!/');
         path = path.pop().split('/');
         that.applyPath(path);
+        alert(path[0]);
     };
     this.applyPath = function(path) {
         // 一共可能有三层path，分为chapter / section / subsection
