@@ -154,6 +154,7 @@ $(document).ready(function() {
     });
 
     $(window).bind('hashchange', function() {
+        console.log('hashchange');
         doc.applyUrl();
     });
 
