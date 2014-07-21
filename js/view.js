@@ -274,7 +274,7 @@ Doc.prototype.initFunc = function() {
         that.currentPage = page;
         scroll(0, 50 -that.topOffset + that.pages[page].offset().top);
         if (page != 'content') {
-            $('#nav-menu').html();
+            $('#nav-menu').html('');
         }
     };
     this.switchChapter = function(title, gesture) {
