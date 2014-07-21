@@ -13,6 +13,9 @@ var Nav = function() {
         $(this).addClass('close');
         $('#nav-drawer').addClass('close');
         $('#nav-bar-btn').removeClass('active');
+        setTimeout(function() {
+            $('#nav-drawer-gray-layer').addClass('realclose');
+        }, 200);
         that.status = false;
     });
     $('#nav-bar-btn')[this.tapevent](function(e) {
@@ -23,9 +26,12 @@ var Nav = function() {
             $(this).removeClass('active');
             $('#nav-drawer-gray-layer').addClass('close');
             $('#nav-drawer').addClass('close');
+            setTimeout(function() {
+                $('#nav-drawer-gray-layer').addClass('realclose');
+            }, 200);
         } else {
             $(this).addClass('active');
-            $('#nav-drawer-gray-layer').removeClass('close');
+            $('#nav-drawer-gray-layer').removeClass('realclose').removeClass('close');
             $('#nav-drawer').removeClass('close');
         }
         that.status = !that.status;
