@@ -43,7 +43,9 @@ h1 {
         left: 10px;
         width: 40px;
         height: 40px;
-        background-color: rgba(255,255,255,0);
+        background-color: rgba(255, 255, 255, 0);
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
         .bar-btn {
             background-color: rgba(255,255,255,0.7);
             width: 67%;
@@ -51,13 +53,30 @@ h1 {
             margin: 7px auto auto auto;
             left: 0;
             display: block;
-        }
-        &:first-child {
-            margin-top: 15px;
-        }
-        &:focus {
-            background-color: rgba(255,255,255,0.2);
+            opacity: 1;
+            transition: all 0.1s linear;
+            &:first-child {
+                margin-top: 15px;
+            }
         }
     }
+    .active .bar-btn {
+        &:nth-child(1) {
+            -webkit-transform: rotate(45deg) translate3d (5px, 5px, 0);
+            -o-transform: rotate(45deg) translate3d (5px, 5px, 0);
+            -ms-transform: rotate(45deg) translate3d (5px, 5px, 0);
+            -moz-transform: rotate(45deg) translate3d (5px, 5px, 0);
+            transform: rotate(45deg) translate3d (5px, 5px, 0);
+        }
+        &:nth-child(2) {
+            opacity: 0;
+        }
+        &:nth-child(3) {
+            -webkit-transform: rotate(-45deg) translate3d (5px, -5px, 0);
+            -o-transform: rotate(-45deg) translate3d (5px, -5px, 0);
+            -ms-transform: rotate(-45deg) translate3d (5px, -5px, 0);
+            -moz-transform: rotate(-45deg) translate3d (5px, -5px, 0);
+            transform: rotate(-45deg) translate3d (5px, -5px, 0);
+        }
 }
 
