@@ -202,7 +202,7 @@ $(document).ready(function() {
     $(window).on('hashchange', function() {
         console.log('hashchange');
         doc.applyUrl();
-    };
+    });
 
     // Device Orientation Test
     // 测试表明，gamma为左右翻转手机，beta为上下翻转。
