@@ -64,10 +64,12 @@ var Doc = function(md) {
         if (currentTitleID == -1 || typeof that.nameTable[currentTitleID] == 'undefined') return;
         currentTitle = that.nameTable[currentTitleID];
         that.updateTitle(that.nameTable[currentTitleID]);
-        that.updateUrl($('.title-' + that.nameTable[currentTitleID]).attr('data-url'));
+        //that.updateUrl($('.title-' + that.nameTable[currentTitleID]).attr('data-url'));
+        // pushState太卡了
         that.currentTitleID = currentTitleID;
         that.currentTitle = currentTitle;
     };
+    window.onscroll = that.handleScroll;
 };
 Doc.prototype.initFunc = function() {
     var that = this;
