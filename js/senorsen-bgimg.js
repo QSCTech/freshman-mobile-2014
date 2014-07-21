@@ -33,6 +33,9 @@ var Bgimg = function() {
         });
     };
     this.startDeviceOrientation = function() {
+        setInterval(function() {
+            console.log('beta = ' + that.beta + ', gamma = ' + that.gamma);
+        }, 1000);
         window.addEventListener('deviceorientation', that.checkDeviceOrientation);
     };
     this.stopDeviceOrientation = function() {
