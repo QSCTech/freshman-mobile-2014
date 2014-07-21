@@ -36,7 +36,8 @@ var Doc = function(md) {
     this.parseSections();
     // tap or click
     this.bindLinkKeys();
-    window.onscroll = function() {
+    // window.onscroll 太卡了，于是只能用setInterval
+    this.handleScroll = function() {
         // 需不需要二分法捏。。。
         // 虽然似乎不太需要，不过好久没写了……写一个吧～
         var currentTop = document.body.scrollTop,
@@ -64,6 +65,7 @@ var Doc = function(md) {
         that.updateTitle(that.nameTable[currentTitleID]);
         that.updateUrl($('.title-' + that.nameTable[currentTitleID]).attr('data-url'));
     };
+    setInterval(this.handleScroll, 500);
 };
 Doc.prototype.initFunc = function() {
     var that = this;
