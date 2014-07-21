@@ -252,16 +252,16 @@ Doc.prototype.initFunc = function() {
     this.switchPage = function(page, gesture) {
         // gesture 用于判断是否为用户滑动。如果是，那么将采用其他动画。
         that.currentPage = page;
-        document.body.scrollTop = 50 -that.topOffset + that.pages[page].offset().top;
+        scroll(0, 50 -that.topOffset + that.pages[page].offset().top);
     };
     this.switchChapter = function(title, gesture) {
         that.currentChapter = title;
-        document.body.scrollTop = -that.topOffset + that.pages[that.currentPage].find('h1.title-' + title).offset().top;
+        scroll(0, -that.topOffset + that.pages[that.currentPage].find('h1.title-' + title).offset().top);
         that.updateTitle(title);
         that.updateChapter(title);
     };
     this.switchSection = function(title, chapter) {
-        document.body.scrollTop = -that.topOffset + that.pages[that.currentPage].find('h2.title-' + title).offset().top;
+        scroll(0, -that.topOffset + that.pages[that.currentPage].find('h2.title-' + title).offset().top);
         that.updateTitle(title, chapter);
         if (that.currentChapter != chapter) {
             that.updateChapter(chapter);
@@ -270,7 +270,7 @@ Doc.prototype.initFunc = function() {
     this.switchSubsection = function(title) {
         $('h3').each(function() {
             if (that.getElementTitle(this) == title) {
-                document.body.scrollTop = -that.topOffset + $(this).offset().top;
+                scroll(0, -that.topOffset + $(this).offset().top);
             }
         });
     };
