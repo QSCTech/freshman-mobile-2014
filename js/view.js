@@ -42,7 +42,7 @@ var Doc = function(md) {
     this.handleScroll = function() {
         // 需不需要二分法捏。。。
         // 虽然似乎不太需要，不过好久没写了……写一个吧～
-        var currentTop = document.body.scrollTop,
+        var currentTop = document.body.scrollTop || window.scrollY,
             currentTitle = '',
             currentTitleID = -1;
         var binFind = function(a, n, f) {
