@@ -63,7 +63,7 @@ var Doc = function(md) {
         currentTitleID = binFind(that.positionTable, that.positionTable.length, currentTop);
         if (currentTitleID == -1 || typeof that.nameTable[currentTitleID] == 'undefined') return;
         currentTitle = that.nameTable[currentTitleID];
-        that.updateTitle(that.nameTable[currentTitleID]);
+        that.updateTitle(currentTitle);
         //that.updateUrl($('.title-' + that.nameTable[currentTitleID]).attr('data-url'));
         // pushState太卡了
         that.currentTitleID = currentTitleID;
@@ -152,7 +152,7 @@ Doc.prototype.initFunc = function() {
     };
     this.updateTitle = function(title) {
         document.title = '浙江大学新生手册移动版 - ' + title;
-        
+        console.log(title);
     };
     this.topOffset = 60;
     this.currentPage = 'cover';
