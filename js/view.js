@@ -51,6 +51,7 @@ var Doc = function(md) {
     this.positionTable = [];
     this.nameTable = [];
     this.chapterTree = [];
+    this.sectionTree = {};
     this.chapterPositionTable = [];
     this.themeColors = window.themeColors;
     this.defaultColor = 'rgba(255,132,0,0.5)';
@@ -114,6 +115,11 @@ Doc.prototype.initFunc = function() {
     this.parseSections = function() {
         var titleObject = $('h1, h2'), 
             lastChapter = '';
+        $('h1').each(function() {
+            if (that.getElementTitle(this) == '搜索') {
+                $(this).remove();
+            }
+        });
         $('#content').find('h1, h2, h3, h4').addClass('title-in-content');
         $('#cover').find('h1, h2, h3, h4').addClass('title-in-cover');
         for (var i = 0; i < titleObject.length; i++) {
@@ -125,10 +131,12 @@ Doc.prototype.initFunc = function() {
                     that.chapterTree.push(that.getElementTitle(titleObject[i]));
                     that.chapterPositionTable.push($(titleObject[i]).offset().top);
                 }
+                that.sectionTree[lastChapter] = [];
             } else {
                 // 必为小节
                 $(titleObject[i]).attr('data-chapter', lastChapter)
                                  .attr('data-url', '#!/' + lastChapter + '/' + that.getElementTitle(titleObject[i]));
+                that.sectionTree[lastChapter].push(that.getElementTitle(titleObject[i]));
             }
             $(titleObject[i]).attr('data-title', that.getElementTitle(titleObject[i]))
                              .addClass('title-' + that.getElementTitle(titleObject[i]));
@@ -217,6 +225,7 @@ Doc.prototype.initFunc = function() {
                 if (that.chapterTree[i] == title) {
                     // i为标号
                     that.currentThemeColor = that.themeColors[i];
+                    
                     break;
                 }
             }
