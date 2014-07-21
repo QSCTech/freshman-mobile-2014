@@ -247,6 +247,7 @@ Doc.prototype.initFunc = function() {
         scroll(0, -that.topOffset + that.pages[page].offset().top);
         if (page == 'cover') {
             bgimg.setBackground(that.pages.cover, 'img/cover_mobile.jpg');
+            bgimg.startDeviceOrientation();
         }
     };
     this.switchChapter = function(title, gesture) {
