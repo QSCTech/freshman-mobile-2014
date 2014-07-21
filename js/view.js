@@ -31,11 +31,38 @@ var Doc = function(md) {
         search: $('#serach')
     };
     this.positionTable = [];
+    this.nameTable = [];
     this.initFunc();
     this.parseSections();
     // tap or click
     this.bindLinkKeys();
-    
+    window.onscroll = function() {
+        // 需不需要二分法捏。。。
+        // 虽然似乎不太需要，不过好久没写了……写一个吧～
+        var currentTop = document.body.scrollTop,
+            currentTitle = '',
+            currentTitleID = -1;
+        var binFind = function(a, n, f) {
+            var left, right, mid;
+            left = 0;
+            right = n;
+            mid = right / 2;
+            while (left <= mid && right >= mid) {
+                if (f == a[mid] || f > a[mid] && f < a[mid+1]) {
+                    return mid;.
+                } else if (f < a[mid]) {
+                    right = mid - 1;
+                } else {
+                    left = mid + 1;
+                }
+                mid = (left + right) / 2;
+            }
+            return -1;
+        };
+        currentTitleID = binFind(that.positionTable, that.positionTable.length, currentTop);
+        that.updateTitle(that.nameTable[currentTitleID]);
+        that.updateUrl($('.title-' + that.nameTable[currentTitleID]).attr('data-url'));
+    };
 };
 Doc.prototype.initFunc = function() {
     var that = this;
@@ -50,13 +77,16 @@ Doc.prototype.initFunc = function() {
             if ($(titleObject[i]).attr('tagName').toLowerCase() == 'h1') {
                 // 大章节标题
                 lastChapter = that.getElementTitle(titleObject[i]);
+                $(titleObject[i]).attr('data-url', '#!/' + lastChapter);
             } else {
                 // 必为小节
-                $(titleObject[i]).attr('data-chapter', lastChapter);
+                $(titleObject[i]).attr('data-chapter', lastChapter)
+                                 .attr('data-url', '#!/' + lastChapter + '/' + that.getElementTitle(titleObject[i]));
             }
             $(titleObject[i]).attr('data-title', that.getElementTitle(titleObject[i]))
                              .addClass('title-' + that.getElementTitle(titleObject[i]));
-            that.positionTable[that.getElementTitle(titleObject[i])] = $(titleObject[i]).offset().top;
+            that.positionTable.push($(titleObject[i]).offset().top);
+            that.nameTable.push(that.getElementTitle(titleObject[i]));
             console.log('[' + that.getElementTitle(titleObject[i]) + '] -> ' + $(titleObject[i]).offset().top);
         }
     };
