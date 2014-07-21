@@ -103,7 +103,9 @@ var Doc = function(md) {
         }
         currentTitle = that.nameTable[currentTitleID];
         that.updateTitle(currentTitle, currentChapter);
-        that.updateUrl($('.title-' + that.nameTable[currentTitleID]).attr('data-url'));
+        if (currentTitle) {
+            that.updateUrl($('.title-' + currentTitle).attr('data-url'));
+        {
         that.currentTitleID = currentTitleID;
         that.currentTitle = currentTitle;
     };
