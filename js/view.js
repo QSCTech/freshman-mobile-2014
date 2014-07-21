@@ -19,7 +19,6 @@ var Doc = function(md) {
     var $html = $(html);
     $html.find('img[alt=cover]').addClass('img-cover');
     window.$html = $html;
-    window.mdhtml = html;
     $html.find('h1, h2').addClass('title-in-content');
     this.$content = $('#content').html($html);
     var index = $html.clone().filter('h1, h2');
@@ -41,21 +40,24 @@ var Doc = function(md) {
 Doc.prototype.initFunc = function() {
     var that = this;
 
+    this.getElementTitle = function(ele) {
+        return $(ele).text().trim(); // 去除两边的空格
+    };
     this.parseSections = function() {
         var titleObject = $('h1, h2'), 
             lastChapter = '';
         for (var i = 0; i < titleObject.length; i++) {
             if ($(titleObject[i]).attr('tagName').toLowerCase() == 'h1') {
                 // 大章节标题
-                lastChapter = $(titleObject[i]).text();
+                lastChapter = that.getElementTitle(titleObject[i]);
             } else {
                 // 必为小节
                 $(titleObject[i]).attr('data-chapter', lastChapter);
             }
-            $(titleObject[i]).attr('data-title', $(titleObject[i]).text())
-                             .addClass('title-' + $(titleObject[i]).text());
-            that.positionTable[$(titleObject[i]).text()] = $(titleObject[i]).offset().top;
-            console.log('[' + $(titleObject[i]).text() + '] -> ' + $(titleObject[i]).offset().top);
+            $(titleObject[i]).attr('data-title', that.getElementTitle(titleObject[i]))
+                             .addClass('title-' + that.getElementTitle(titleObject[i]));
+            that.positionTable[that.getElementTitle(titleObject[i])] = $(titleObject[i]).offset().top;
+            console.log('[' + that.getElementTitle(titleObject[i]) + '] -> ' + $(titleObject[i]).offset().top);
         }
     };
     this.bindLinkKeys = function() {
