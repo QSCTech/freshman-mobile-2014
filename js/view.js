@@ -114,8 +114,10 @@ Doc.prototype.initFunc = function() {
                 // 大章节标题
                 lastChapter = that.getElementTitle(titleObject[i]);
                 $(titleObject[i]).attr('data-url', '#!/' + lastChapter);
-                that.chapterTree.push(that.getElementTitle(titleObject[i]));
-                that.chapterPositionTable.push($(titleObject[i]).offset().top);
+                if ($(titleOjbect[i]).hasClass('title-in-content')) {
+                    that.chapterTree.push(that.getElementTitle(titleObject[i]));
+                    that.chapterPositionTable.push($(titleObject[i]).offset().top);
+                }
             } else {
                 // 必为小节
                 $(titleObject[i]).attr('data-chapter', lastChapter)
