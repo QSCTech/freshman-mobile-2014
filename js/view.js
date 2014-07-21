@@ -290,7 +290,7 @@ $(document).ready(function() {
         e.stopPropagation();
         console.log('点击链接：' + href);
         var regexp = '/' + location.href.split('#!/')[0].replace(/\//g, '\\/') + '/';
-        if (eval(regexp).test(href)) {
+        if (eval(regexp).test(href) || /#!\//.test(href)) {
             // 内部章节跳转
             // as like #!/入校 or #!/入校/懂得浙大 or #!/入校/懂得浙大/两大学院三大学园
             console.log('判定为内部链接');
