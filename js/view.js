@@ -36,7 +36,7 @@ var Doc = function(md) {
     this.parseSections();
     // tap or click
     this.bindLinkKeys();
-    // window.onscroll 太卡了，于是只能用setInterval
+
     this.handleScroll = function() {
         // 需不需要二分法捏。。。
         // 虽然似乎不太需要，不过好久没写了……写一个吧～
@@ -62,10 +62,12 @@ var Doc = function(md) {
         };
         currentTitleID = binFind(that.positionTable, that.positionTable.length, currentTop);
         if (currentTitleID == -1 || typeof that.nameTable[currentTitleID] == 'undefined') return;
+        currentTitle = that.nameTable[currentTitleID];
         that.updateTitle(that.nameTable[currentTitleID]);
         that.updateUrl($('.title-' + that.nameTable[currentTitleID]).attr('data-url'));
+        that.currentTitleID = currentTitleID;
+        that.currentTitle = currentTitle;
     };
-    //setInterval(this.handleScroll, 500);
 };
 Doc.prototype.initFunc = function() {
     var that = this;
@@ -197,7 +199,7 @@ $(document).ready(function() {
         }
     });
 
-    window.onhashchange = function() {
+    $(window).on('hashchange', function() {
         console.log('hashchange');
         doc.applyUrl();
     };
