@@ -17,6 +17,13 @@ var Bgimg = function() {
             'background-size': 'auto ' + that.sheight * 1.2 + 'px',
         });
     };
+    this.checkForMozilla = function(event) {
+        that.checkDeviceOrientation({
+            alpha: event.z * 180 + 180, // 不知道这对不对
+            beta: event.y * 180,
+            gamma: event.x * 90
+        });
+    };
     this.checkDeviceOrientation = function(event) {
         var alpha, beta, gamma;
         alpha = event.alpha;
@@ -35,10 +42,12 @@ var Bgimg = function() {
     this.startDeviceOrientation = function() {
         console.log('[Senorsen-bgimg] Device Orientation Started. ');
         window.addEventListener('deviceorientation', that.checkDeviceOrientation);
+        window.addEventListener('MozOriention', that.checkForMozilla);
     };
     this.stopDeviceOrientation = function() {
         console.log('[Senorsen-bgimg] Device Orientation Stopped. ');
         window.removeEventListener('deviceorientation', that.checkDeviceOrientation);
+        window.removeEventListener('MozOriention', that.checkForMozilla);
     };
 };
 
