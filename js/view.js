@@ -71,12 +71,13 @@ var Doc = function(md) {
         }
         currentTitle = that.nameTable[currentTitleID];
         that.updateTitle(currentTitle);
-        that.updateUrl($('.title-' + that.nameTable[currentTitleID]).attr('data-url'));
+        //that.updateUrl($('.title-' + that.nameTable[currentTitleID]).attr('data-url'));
         // pushState太卡了
         that.currentTitleID = currentTitleID;
         that.currentTitle = currentTitle;
     };
-    window.onscroll = that.handleScroll;
+    //window.onscroll = that.handleScroll;
+    setInterval(that.handleScroll, 1000);
 };
 Doc.prototype.initFunc = function() {
     var that = this;
