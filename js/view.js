@@ -307,6 +307,8 @@ Doc.prototype.initFunc = function() {
 
 $(document).ready(function() {
     bgimg = new Bgimg();
+    // dirty hack test: chrome等手机浏览器遇到的地址栏缩回导致vh变化
+    $('.page').css('min-height', screen.availHeight);
     $.get('share/freshman.md', function(data) {
         $('#nav-loading').fadeOut();
         doc = new Doc(data);
