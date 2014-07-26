@@ -258,7 +258,7 @@ Doc.prototype.initFunc = function() {
             'box-shadow': '0 0 5px ' + that.currentThemeColor
         }); 
         $(document.body).css({
-            'background-color': (that.currentThemeColor).hexRgba(0.1)
+            'background-color': (that.currentThemeColor).hexRgbFade(0.1)
         });
     };
     this.updateTitle = function(title, chapter) {

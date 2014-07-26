@@ -45,6 +45,20 @@ String.prototype.hexRgba = function(a) {
     return 'rgba(' + r + ', ' + g + ', ' + b + ', ' + a + ')';
 };
 
+String.prototype.hexRgbFade = function(a) {
+    // somewhat for performance enhancement
+    var rgb = this.hexRgb(true);
+    if (!$.isArray(rgb)) {
+        rgb = this.parseRgb();
+    }
+    // 人眼色彩误差暂不记（实际上是我忘记了参数）
+    a = parseFloat(a);
+    var r = 255 - (255 - rgb[0]) * a,
+        g = 255 - (255 - rgb[1]) * a,
+        b = 255 - (255 - rgb[2]) * a;
+    return 'rgb(' + r + ', ' + g + ', ' + b + ')';
+};
+
 String.prototype.parseRgb = function() {
     var regexp = /^rgb\((\d+),\s?(\d+),\s?(\d+)\)$/,
         regexpa = /^rgba\((\d+),\s?(\d+),\s?(\d+),\s?(.+)\)$/;
@@ -55,7 +69,9 @@ String.prototype.parseRgb = function() {
         return [r[1], r[2], r[3]];
     } else if (regexpa.test(str)) {
         r = regexpa.exec(str);
-        return [r[1], r[2], r[3]];
+        return [255 - (255 - parseInt(r[1])) * parseFloat(r[4]), 
+                255 - (255 - parseInt(r[2])) * parseFloat(r[4]), 
+                255 - (255 - parseInt(r[3])) * parseFloat(r[4])];
     } else {
         return false;
     }
