@@ -6,8 +6,8 @@
 
 var Bgimg = function() {
     var that = this;
-    this.sheight = screen.availHeight;
-    this.swidth = screen.availWidth;
+    this.sheight = getScreenHeight();
+    this.swidth = getScreenWidth();
     
     this.setBackground = function(obj, url) {
         that.preloader = $('<img>').attr('src', url);
