@@ -267,7 +267,7 @@ Doc.prototype.initFunc = function() {
             for (var i in that.chapterTree) {
                 if (that.chapterTree[i] == title) {
                     // i为标号
-                    if (gesture) {
+                    if (!gesture) {
                         bgimg.setBackground($('#chapter-cover'), that.chapterImage[i], that.chapterImagex[i], that.chapterImagey[i]);
                         bgimg.startDeviceOrientation();
                         $('#chapter-layer').removeClass('expand');
