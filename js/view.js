@@ -140,7 +140,7 @@ Doc.prototype.initFunc = function() {
         that.chapterImagex = [-520, -200, -280, -150, -260];
         that.chapterImagey = [-2, 0, 0, 0, 0];
         that.chapterImagexr = [1, 1, 0.6, 0.8, 1.2];
-        that.chapterImageyr = [0.1, 0.1, 0.1, 0.1, 0.1];
+        that.chapterImageyr = [0, 0, 0, 0, 0];
     };
     this.parseSections = function() {
         var titleObject = $('h1, h2'), 
