@@ -263,7 +263,7 @@ Doc.prototype.initFunc = function() {
             for (var i in that.chapterTree) {
                 if (that.chapterTree[i] == title) {
                     // i为标号
-                    scroll(0, that.chapterPositionTable[i]); // 强制滚动
+                    scroll(0, that.chapterPositionTable[i] + that.topOffset); // 强制滚动
                     bgimg.setBackground($('#chapter-cover'), that.chapterImage[i], that.chapterImagex[i], that.chapterImagey[i]);
                     bgimg.startDeviceOrientation();
                     $('#chapter-layer').removeClass('expand');
