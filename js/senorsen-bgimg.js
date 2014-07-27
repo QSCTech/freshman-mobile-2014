@@ -14,7 +14,7 @@ var Bgimg = function() {
         that.obj = $(obj);
         $(obj).css({
             'background-image': 'url(' + url + ')',
-            'background-size': 'auto ' + that.sheight * 1.2 + 'px',
+            'background-size': 'auto ' + that.sheight * 1.05 + 'px',
         });
         startx = (typeof startx == 'undefined') ? 0 : startx;
         starty = (typeof starty == 'undefined') ? 0 : starty;
