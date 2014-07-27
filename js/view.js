@@ -137,7 +137,7 @@ Doc.prototype.initFunc = function() {
             image = $(this).next().find('.img-cover:nth-child(1)').attr('data-src');
             that.chapterImage.push(image);
         });
-        that.chapterImagex = [-326, -200, -280, -150, -260];
+        that.chapterImagex = [-520, -200, -280, -150, -260];
         that.chapterImagey = [-2, 0, 0, 0, 0];
         that.chapterImagexr = [1, 1, 0.6, 0.8, 1.2];
         that.chapterImageyr = [0.1, 0.1, 0.1, 0.1, 0.1];
