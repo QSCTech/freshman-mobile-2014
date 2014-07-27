@@ -125,11 +125,15 @@ Doc.prototype.initFunc = function() {
     this.parseChapterPreface = function() {
         $('#content').find('h1').each(function() {
             // get preface text
-            var text;
-            text = $(this).nextUtil('h1', 'p').eq(1).text().replace(/\n+/g, '|');
+            var text, image;
+            text = $(this).next().next().text().replace(/\n+/g, '|');
             that.chapterText1.push(text.replace(/[|].+$/, ''));
             that.chapterText2.push(text.replace(/^.+[|]/, ''));
+            image = $(this).next().find('.img-cover:nth-child(1)').attr('data-src');
+            that.chapterImage.push(image);
         });
+        that.chapterImagex = [-326, 0, 0, 0, 0];
+        that.chapterImagey = [-2, 0, 0, 0, 0];
     };
     this.parseSections = function() {
         var titleObject = $('h1, h2'), 
