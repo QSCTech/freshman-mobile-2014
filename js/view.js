@@ -267,7 +267,7 @@ Doc.prototype.initFunc = function() {
                     bgimg.setBackground($('#chapter-cover'), that.chapterImage[i], that.chapterImagex[i], that.chapterImagey[i]);
                     bgimg.startDeviceOrientation();
                     $('#chapter-layer').removeClass('expand');
-                    $('#chapter-title').text(title + '篇').;
+                    $('#chapter-title').text(title + '篇');
                     $('#chapter-text1').text(that.chapterText1[i]).removeClass('expand');
                     $('#chapter-text2').text(that.chapterText2[i]).removeClass('expand');
                     $('#chapter-cover').addClass('show').click(that.closeChapterDisp).css({"display": "block"});
