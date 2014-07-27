@@ -18,8 +18,8 @@ var Bgimg = function() {
         });
         startx = (typeof startx == 'undefined') ? 0 : startx;
         starty = (typeof starty == 'undefined') ? 0 : starty;
-        this.startx = startx;
-        this.starty = starty;
+        this.startx = startx + 100;
+        this.starty = starty + 95;
     };
     this.checkForMozilla = function(event) {
         that.checkDeviceOrientation({
