@@ -156,7 +156,7 @@ Doc.prototype.initFunc = function() {
                     that.chapterPositionTable.push($(titleObject[i]).offset().top);
                     that.sectionTree[lastChapter] = [];
                 }
-            } else ($(titleObject[i]).attr('tagName').toLowerCase() == 'h2') {
+            } else if ($(titleObject[i]).attr('tagName').toLowerCase() == 'h2') {
                 // 必为小节
                 $(titleObject[i]).attr('data-chapter', lastChapter)
                                  .attr('data-url', '#!/' + lastChapter + '/' + that.getElementTitle(titleObject[i]));
