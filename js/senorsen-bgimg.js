@@ -18,8 +18,8 @@ var Bgimg = function() {
         });
         startx = (typeof startx == 'undefined') ? 0 : startx;
         starty = (typeof starty == 'undefined') ? 0 : starty;
-        this.startx = startx + 100;
-        this.starty = starty + 15;
+        this.startx = startx;
+        this.starty = starty;
         xr = (typeof xr == 'undefined') ? 1 : xr;
         yr = (typeof yr == 'undefined') ? 1 : yr;
         this.xr = xr;
@@ -40,8 +40,8 @@ var Bgimg = function() {
         that.alpha = alpha;
         that.beta = beta;
         that.gamma = gamma;
-        that.y = beta * 2 - 100;
-        that.x = gamma * 2 - 100;
+        that.y = beta * 2;
+        that.x = gamma * 2;
         that.obj.css({
             'background-position-x': that.x * that.xr + that.startx,
             'background-position-y': that.y * that.yr + that.starty
