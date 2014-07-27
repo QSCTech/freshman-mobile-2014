@@ -137,8 +137,10 @@ Doc.prototype.initFunc = function() {
             image = $(this).next().find('.img-cover:nth-child(1)').attr('data-src');
             that.chapterImage.push(image);
         });
-        that.chapterImagex = [-326, 0, 0, 0, 0];
+        that.chapterImagex = [-326, -200, -280, -150, -260];
         that.chapterImagey = [-2, 0, 0, 0, 0];
+        that.chapterImagexr = [1, 1, 0.6, 0.8, 1.2];
+        that.chapterImageyr = [0.1, 0.1, 0.1, 0.1, 0.1];
     };
     this.parseSections = function() {
         var titleObject = $('h1, h2'), 
@@ -258,7 +260,7 @@ Doc.prototype.initFunc = function() {
         bgimg.stopDeviceOrientation();
         if (title == '') {
             that.currentThemeColor = that.defaultColor;
-            bgimg.setBackground(that.pages.cover, 'img/cover_mobile.jpg');
+            bgimg.setBackground(that.pages.cover, 'img/cover_mobile.jpg', -17, -35, 1, 1);
             bgimg.startDeviceOrientation();
             $('#nav-menu').html('');
         } else {
@@ -268,7 +270,7 @@ Doc.prototype.initFunc = function() {
                 if (that.chapterTree[i] == title) {
                     // i为标号
                     if (!gesture) {
-                        bgimg.setBackground($('#chapter-cover'), that.chapterImage[i], that.chapterImagex[i], that.chapterImagey[i]);
+                        bgimg.setBackground($('#chapter-cover'), that.chapterImage[i], that.chapterImagex[i], that.chapterImagey[i], that.chapterImagexr[i], that.chapterImageyr[i]);
                         bgimg.startDeviceOrientation();
                         $('#chapter-layer').removeClass('expand');
                         $('#chapter-title').text(title + '篇');

@@ -9,7 +9,7 @@ var Bgimg = function() {
     this.sheight = getScreenHeight();
     this.swidth = getScreenWidth();
 
-    this.setBackground = function(obj, url, startx, starty) {
+    this.setBackground = function(obj, url, startx, starty, xr, yr) {
         that.preloader = $('<img>').attr('src', url);
         that.obj = $(obj);
         $(obj).css({
@@ -20,6 +20,10 @@ var Bgimg = function() {
         starty = (typeof starty == 'undefined') ? 0 : starty;
         this.startx = startx + 100;
         this.starty = starty + 98;
+        xr = (typeof xr == 'undefined') ? 1 : xr;
+        yr = (typeof yr == 'undefined') ? 1 : yr;
+        this.xr = xr;
+        this.yr = yr;
     };
     this.checkForMozilla = function(event) {
         that.checkDeviceOrientation({
