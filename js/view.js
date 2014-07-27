@@ -53,8 +53,10 @@ var Doc = function(md) {
     this.chapterTree = [];
     this.sectionTree = {};
     this.chapterPositionTable = [];
+    this.chapterText1 = [];
+    this.chapterText2 = [];
     this.themeColors = window.themeColors;
-    this.defaultColor = 'rgba(255,132,0,0.5)';
+    this.defaultColor = 'rgba(255, 132, 0, 0.5)';
     this.currentThemeColor = this.defaultColor;
     this.currentChapter = '';
     this.currentChapterID = -1;
@@ -120,6 +122,15 @@ Doc.prototype.initFunc = function() {
     this.getElementTitle = function(ele) {
         return $(ele).text().trim(); // 去除两边的空格
     };
+    this.parseChapterPreface = function() {
+        $('#content').find('h1').each(function() {
+            // get preface text
+            var text;
+            text = $(this).nextUtil('h1', 'p').eq(1).text().replace(/\n+/g, '|');
+            that.chapterText1.push(text.replace(/[|].+$/, ''));
+            that.chapterText2.push(text.replace(/^.+[|]/, ''));
+        });
+    };
     this.parseSections = function() {
         var titleObject = $('h1, h2'), 
             lastChapter = '';
@@ -128,6 +139,7 @@ Doc.prototype.initFunc = function() {
                 $(this).remove();
             }
         });
+        that.parseChapterPreface();
         $('#content').find('h1, h2, h3, h4').addClass('title-in-content');
         $('#cover-btn').find('h1, h2, h3, h4').addClass('title-in-cover');
         for (var i = 0; i < titleObject.length; i++) {
@@ -140,7 +152,7 @@ Doc.prototype.initFunc = function() {
                     that.chapterPositionTable.push($(titleObject[i]).offset().top);
                     that.sectionTree[lastChapter] = [];
                 }
-            } else {
+            } else ($(titleObject[i]).attr('tagName').toLowerCase() == 'h2') {
                 // 必为小节
                 $(titleObject[i]).attr('data-chapter', lastChapter)
                                  .attr('data-url', '#!/' + lastChapter + '/' + that.getElementTitle(titleObject[i]));
@@ -224,6 +236,15 @@ Doc.prototype.initFunc = function() {
             that.switchPage('cover');
         }
     };
+    this.closeChapterDisp = function() {
+        $('#chapter-cover').removeClass('show');
+        setTimeout(function() {
+            $('#chapter-cover').css({"display": "none"});
+            $('#chapter-layer').removeClass('expand');
+            $('.chapter-text').removeClass('expand');
+            bgimg.stopDeviceOrientation();
+        }, 200);
+    };
     this.updateChapter = function(title) {
         bgimg.stopDeviceOrientation();
         if (title == '') {
@@ -232,9 +253,25 @@ Doc.prototype.initFunc = function() {
             bgimg.startDeviceOrientation();
             $('#nav-menu').html('');
         } else {
+            // 显示xx篇的图片屏幕。
+            // 是否要检测一下用户是否要流量了呢？
             for (var i in that.chapterTree) {
                 if (that.chapterTree[i] == title) {
                     // i为标号
+                    scroll(0, that.chapterPositionTable[i]); // 强制滚动
+                    bgimg.setBackground($('#chapter-cover'), that.chapterImage[i], that.chapterImagex[i], that.chapterImagey[i]);
+                    bgimg.startDeviceOrientation();
+                    $('#chapter-layer').removeClass('expand');
+                    $('#chapter-title').text(title + '篇');
+                    $('#chapter-text1').text(that.chapterText1[i]).removeClass('expand');
+                    $('#chapter-text2').text(that.chapterText2[i]).removeClass('expand');
+                    $('#chapter-cover').addClass('show').click(that.closeChapterDisp);
+                    setTimeout(function() {
+                        $('#chapter-layer').addClass('expand');
+                        setTimeout(function() {
+                            $('.chapter-text').addClass('expand');
+                        }, 500);
+                    }, 200);
                     that.currentThemeColor = that.themeColors[i];
                     // 在左侧抽屉中添加跳转子章节
                     $('#nav-menu').html('');
@@ -272,6 +309,8 @@ Doc.prototype.initFunc = function() {
         var showTitle = title == '' ? '浙江大学新生手册' : (title + '篇');
         if (chapter && chapter != title) {
             showTitle = chapter + '篇 - ' + title;
+            // dirty hack: 判断
+            that.closeChapterDisp();
         }
         $('#nav-title').text(showTitle);
         console.log('update title: ' + document.title);

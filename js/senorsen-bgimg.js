@@ -8,14 +8,18 @@ var Bgimg = function() {
     var that = this;
     this.sheight = getScreenHeight();
     this.swidth = getScreenWidth();
-    
-    this.setBackground = function(obj, url) {
+
+    this.setBackground = function(obj, url, startx, starty) {
         that.preloader = $('<img>').attr('src', url);
         that.obj = $(obj);
         $(obj).css({
             'background-image': 'url(' + url + ')',
             'background-size': 'auto ' + that.sheight * 1.2 + 'px',
         });
+        startx = (typeof startx == 'undefined') ? 0 : startx;
+        starty = (typeof starty == 'undefined') ? 0 : starty;
+        this.startx = startx;
+        this.starty = starty;
     };
     this.checkForMozilla = function(event) {
         that.checkDeviceOrientation({
@@ -35,8 +39,8 @@ var Bgimg = function() {
         that.y = beta * 2 - 100;
         that.x = gamma * 2 - 100;
         that.obj.css({
-            'background-position-x': that.x,
-            'background-position-y': that.y
+            'background-position-x': that.x + that.startx,
+            'background-position-y': that.y + that.starty
         });
     };
     this.startDeviceOrientation = function() {
