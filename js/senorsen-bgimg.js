@@ -14,9 +14,8 @@ var Bgimg = function() {
         that.obj = $(obj);
         $(obj).css({
             'background-image': 'url(' + url + ')',
-            'background-size': 'auto ' + that.sheight + 'dppx',
+            'background-size': 'auto cover',
         });
-        // dppx = Dots per CSS pixel
         startx = (typeof startx == 'undefined') ? 0 : startx;
         starty = (typeof starty == 'undefined') ? 0 : starty;
         this.startx = startx;
