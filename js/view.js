@@ -270,7 +270,7 @@ Doc.prototype.initFunc = function() {
                     $('#chapter-title').text(title + '篇');
                     $('#chapter-text1').text(that.chapterText1[i]).removeClass('expand');
                     $('#chapter-text2').text(that.chapterText2[i]).removeClass('expand');
-                    $('#chapter-cover').addClass('show').click(that.closeChapterDisp);
+                    $('#chapter-cover').addClass('show').click(that.closeChapterDisp).css({"display": "block"});
                     setTimeout(function() {
                         $('#chapter-layer').addClass('expand');
                         setTimeout(function() {
