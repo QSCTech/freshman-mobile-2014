@@ -260,7 +260,7 @@ Doc.prototype.initFunc = function() {
         bgimg.stopDeviceOrientation();
         if (title == '') {
             that.currentThemeColor = that.defaultColor;
-            bgimg.setBackground(that.pages.cover, 'img/cover_mobile.jpg', -17, -10, 1, 1);
+            bgimg.setBackground(that.pages.cover, 'img/cover_mobile.jpg', -17, 20, 1, 1);
             bgimg.startDeviceOrientation();
             $('#nav-menu').html('');
         } else {
