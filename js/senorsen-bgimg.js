@@ -19,7 +19,7 @@ var Bgimg = function() {
         startx = (typeof startx == 'undefined') ? 0 : startx;
         starty = (typeof starty == 'undefined') ? 0 : starty;
         this.startx = startx + 100;
-        this.starty = starty + 96;
+        this.starty = starty + 98;
     };
     this.checkForMozilla = function(event) {
         that.checkDeviceOrientation({
