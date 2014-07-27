@@ -43,8 +43,8 @@ var Bgimg = function() {
         that.y = beta * 2 - 100;
         that.x = gamma * 2 - 100;
         that.obj.css({
-            'background-position-x': that.x + that.startx,
-            'background-position-y': that.y + that.starty
+            'background-position-x': that.x * that.xr + that.startx,
+            'background-position-y': that.y * that.yr + that.starty
         });
     };
     this.startDeviceOrientation = function() {
