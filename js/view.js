@@ -89,9 +89,13 @@ var Doc = function(md) {
             } else {
                 currentChapter = that.chapterTree[currentChapterID];
             }
+            if (that.currentChapterID > currentChapterID) {
+                that.updateChapter(currentChapter, true);
+            } else {
+                that.updateChapter(currentChapter, false);
+            }
             that.currentChapterID = currentChapterID;
             that.currentChapter = currentChapter;
-            that.updateChapter(currentChapter);
         } else {
             currentChapter = that.currentChapter;
         }
@@ -250,7 +254,7 @@ Doc.prototype.initFunc = function() {
             bgimg.stopDeviceOrientation();
         }, 200);
     };
-    this.updateChapter = function(title) {
+    this.updateChapter = function(title, gesture) {
         bgimg.stopDeviceOrientation();
         if (title == '') {
             that.currentThemeColor = that.defaultColor;
@@ -263,21 +267,22 @@ Doc.prototype.initFunc = function() {
             for (var i in that.chapterTree) {
                 if (that.chapterTree[i] == title) {
                     // i为标号
-                    //scroll(0, that.chapterPositionTable[i] - that.topOffset); // 强制滚动
-                    bgimg.setBackground($('#chapter-cover'), that.chapterImage[i], that.chapterImagex[i], that.chapterImagey[i]);
-                    bgimg.startDeviceOrientation();
-                    $('#chapter-layer').removeClass('expand');
-                    $('#chapter-title').text(title + '篇');
-                    $('#chapter-text1').text(that.chapterText1[i]).removeClass('expand');
-                    $('#chapter-text2').text(that.chapterText2[i]).removeClass('expand');
-                    $('#chapter-cover').addClass('show').click(that.closeChapterDisp).css({"display": "block"});
-                    setTimeout(function() {
-                        $('#chapter-layer').addClass('expand');
-                        $('#chapter-title').addClass('expand');
+                    if (gesture) {
+                        bgimg.setBackground($('#chapter-cover'), that.chapterImage[i], that.chapterImagex[i], that.chapterImagey[i]);
+                        bgimg.startDeviceOrientation();
+                        $('#chapter-layer').removeClass('expand');
+                        $('#chapter-title').text(title + '篇');
+                        $('#chapter-text1').text(that.chapterText1[i]).removeClass('expand');
+                        $('#chapter-text2').text(that.chapterText2[i]).removeClass('expand');
+                        $('#chapter-cover').addClass('show').click(that.closeChapterDisp).css({"display": "block"});
                         setTimeout(function() {
-                            $('.chapter-text').addClass('expand');
-                        }, 500);
-                    }, 200);
+                            $('#chapter-layer').addClass('expand');
+                            $('#chapter-title').addClass('expand');
+                            setTimeout(function() {
+                                $('.chapter-text').addClass('expand');
+                            }, 500);
+                        }, 200);
+                    }
                     that.currentThemeColor = that.themeColors[i];
                     // 在左侧抽屉中添加跳转子章节
                     $('#nav-menu').html('');
@@ -338,7 +343,7 @@ Doc.prototype.initFunc = function() {
         scroll(0, -that.topOffset + that.pages[that.currentPage].find('h2.title-' + title).offset().top);
         that.updateTitle(title, chapter);
         if (that.currentChapter != chapter) {
-            that.updateChapter(chapter);
+            that.updateChapter(chapter, true);
         }
     };
     this.switchSubsection = function(title) {
