@@ -55,6 +55,7 @@ var Doc = function(md) {
     this.chapterPositionTable = [];
     this.chapterText1 = [];
     this.chapterText2 = [];
+    this.chapterImage = [];
     this.themeColors = window.themeColors;
     this.defaultColor = 'rgba(255, 132, 0, 0.5)';
     this.currentThemeColor = this.defaultColor;
