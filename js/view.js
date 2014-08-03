@@ -323,7 +323,7 @@ Doc.prototype.initFunc = function() {
         if (chapter && chapter != title) {
             showTitle = chapter + '篇 - ' + title;
             // dirty hack: 判断
-            that.closeChapterDisp();
+            //that.closeChapterDisp();
         }
         $('#nav-title').text(showTitle);
         console.log('update title: ' + document.title);
