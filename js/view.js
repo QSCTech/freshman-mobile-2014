@@ -90,6 +90,7 @@ var Doc = function(md) {
                 currentChapter = that.chapterTree[currentChapterID];
             }
             if (that.currentChapterID > currentChapterID) {
+                // 翻阅下边的章节，且非点击事件才庆祝
                 that.updateChapter(currentChapter, true);
             } else {
                 that.updateChapter(currentChapter, false);
@@ -200,7 +201,7 @@ Doc.prototype.initFunc = function() {
 
         // tap or click bind for nav-btn
         $('.page-tap')[eventFunc](function() {
-            that.switchPage($(this).attr('data-page'));
+            that.switchPage($(this).attr('data-page', true));
         });
     };
     this.updateUrl = function(url) {
