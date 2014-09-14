@@ -334,7 +334,11 @@ Doc.prototype.initFunc = function() {
     this.switchPage = function(page, gesture) {
         // gesture 用于判断是否为用户滑动。如果是，那么将采用其他动画。
         that.currentPage = page;
-        scroll(0, 50 -that.topOffset + that.pages[page].offset().top);
+        try {
+            scroll(0, 50 -that.topOffset + that.pages[page].offset().top);
+        } catch(e) {
+            // not belongs to pages
+        }
     };
     this.switchChapter = function(title, gesture) {
         that.currentChapter = title;
